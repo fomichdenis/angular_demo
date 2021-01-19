@@ -1,0 +1,20 @@
+<div class="container">
+  <div>
+  <app-text-field
+    [disabled]="false"
+    [(value)]="this.credentials.username"
+    [label]="'Login'"
+    (keyup.enter)="loginUser()">
+  </app-text-field>
+
+  <app-text-field
+    [disabled]="false"
+    [(value)]="this.credentials.password"
+    [type]="'password'"
+    [label]="'Password'"
+    (keyup.enter)="loginUser()">
+  </app-text-field>
+
+  <button id="submit" (click)="loginUser()">Submit</button>
+  </div>
+</div>

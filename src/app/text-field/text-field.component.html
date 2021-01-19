@@ -1,0 +1,6 @@
+<label><b *ngIf="label">{{label}}</b>
+  <br/>
+  <input [type]="this.type"
+         [(ngModel)]="this.value"
+         [disabled]="this.disabled">
+</label>

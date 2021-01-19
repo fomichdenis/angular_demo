@@ -1,0 +1,5 @@
+<a [routerLink]="['/templater']">
+  <h1>Templater App</h1>
+</a>
+
+<a *ngIf="isLoggedIn" class="button fancy-button" (click)="logout()" >Logout</a>
