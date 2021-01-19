@@ -11,7 +11,7 @@ export class DragDropDirective {
 
 
   //Dragover listener
-  @HostListener('dragover', ['$event']) onDragOver(evt) {
+  /*@HostListener('dragover', ['$event']) onDragOver(evt) {
     evt.preventDefault();
     evt.stopPropagation();
     this.background = '#9ecbec';
@@ -35,6 +35,6 @@ export class DragDropDirective {
       this.onFileDropped.emit(files)
     }
 
-  }
+  }*/
 
 }
