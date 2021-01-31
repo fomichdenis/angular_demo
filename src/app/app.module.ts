@@ -15,6 +15,11 @@ import {HttpInterceptorService} from "./service/http-interceptor.service";
 import { DropZoneComponent } from './drop-zone/drop-zone.component';
 import {NgxDropzoneModule} from "ngx-dropzone";
 
+import { HeroFormComponent } from './hero-form/hero-form.component';
+import {RegistrationPageComponent} from './registration-page/registration-page.component';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +29,9 @@ import {NgxDropzoneModule} from "ngx-dropzone";
     UploadFileComponent,
     DragDropDirective,
     TopBarComponent,
-    DropZoneComponent
+    DropZoneComponent,
+    HeroFormComponent,
+    RegistrationPageComponent
   ],
     imports: [
         BrowserModule,
