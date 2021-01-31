@@ -5,11 +5,11 @@ import {Router} from "@angular/router";
 import {TopBarComponent} from "../top-bar/top-bar.component";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  selector: 'app-registration-page',
+  templateUrl: './registration-page.component.html',
+  styleUrls: ['./registrtaion-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class RegistrationPageComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -20,15 +20,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginUser() {
-    console.log('login = ' + this.credentials.username + ", password = " + this.credentials.password);
-    this.authenticationService.authenticate(this.credentials, () => {
-      this.router.navigate(['/templater']);
-    });
-    return false;
-  }
-
-  Registration() {
+  Registrate() {
     return false;
   }
 

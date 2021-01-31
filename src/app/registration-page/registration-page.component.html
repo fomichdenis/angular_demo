@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <app-text-field
+      [disabled]="false"
+      [(value)]="this.credentials.username"
+      [label]="'Login'"
+      (keyup.enter)="Registrate()">
+    </app-text-field>
+
+    <app-text-field
+      [disabled]="false"
+      [(value)]="this.credentials.password"
+      [type]="'password'"
+      [label]="'Password'"
+      (keyup.enter)="Registrate()">
+    </app-text-field>
+
+    <app-text-field
+      [disabled]="false"
+      [(value)]="this.credentials.password"
+      [type]="'password'"
+      [label]="'Password'"
+      (keyup.enter)="Registrate()">
+    </app-text-field>
+
+    <button id="submit" (click)="Registrate()">Create new user</button>
+  </div>
+</div>

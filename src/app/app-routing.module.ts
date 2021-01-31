@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {TemplaterComponent} from "./templater/templater.component";
-import {AuthGuardService} from "./service/auth-guard.service"; // CLI imports router
+import {AuthGuardService} from "./service/auth-guard.service";
+import {RegistrationPageComponent} from './registration-page/registration-page.component';
+import {HeroFormComponent} from './hero-form/hero-form.component'; // CLI imports router
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginPageComponent},
+  { path: 'reg', component: RegistrationPageComponent},
+  { path: 'temp', component: HeroFormComponent},
   { path: 'templater', component: TemplaterComponent, canActivate:[AuthGuardService] }
 ];
 
