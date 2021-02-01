@@ -1,0 +1,26 @@
+.drop-zone {
+  background-image: url("../../assets/cloud.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 210px;
+  width: 80%;
+  margin: 20px auto;
+  border: 2px dashed #1C8ADB;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.drop-zone:hover {
+  cursor: pointer;
+  background-color: #9ecbec !important;
+  opacity: 0.8;
+}
+
+.drop-zone-label {
+  position: relative;
+  width: auto;
+  margin: auto;
+  height: 10%;
+  top: -30%;
+}

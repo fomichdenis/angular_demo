@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   authenticated = false;
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
-  credentials : {username: string, password: string} = {username: null, password: null};
+  credentials: {username: string, password: string} = {username: null, password: null};
   constructor(private http: HttpClient) {
   }
 
