@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from "rxjs/operators";
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,13 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
+
+
   authenticate(credentials, callback) {
     console.log(credentials);
-    this.http.get(`http://localhost:8080/test_angular`,
+    this.http.get(`http://localhost:8080/angular/login`,
       { headers: { authorization: this.createBasicAuthToken(credentials.username, credentials.password) } }).subscribe( response => {
-      if (response['name']) {
+      if (response && response['username']) {
         this.credentials = credentials;
         this.registerSuccessfulLogin(credentials.username, credentials.password);
       }
@@ -27,7 +29,7 @@ export class AuthenticationService {
   }
 
   createBasicAuthToken(username: String, password: String) {
-    return 'Basic ' + window.btoa(username + ":" + password)
+    return 'Basic ' + window.btoa(username + ":" + password);
   }
 
   registerSuccessfulLogin(username, password) {
@@ -38,6 +40,8 @@ export class AuthenticationService {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     this.credentials.username = null;
     this.credentials.password = null;
+    this.http.get('http://localhost:8080/logout');
+    console.log('logout');
   }
 
   isUserLoggedIn() {
