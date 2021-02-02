@@ -40,6 +40,7 @@ export class AuthenticationService {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     this.credentials.username = null;
     this.credentials.password = null;
+    this.authenticated = false;
     this.http.get('http://localhost:8080/logout');
     console.log('logout');
   }

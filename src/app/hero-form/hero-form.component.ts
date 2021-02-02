@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {RegistrationService} from "../service/registration.service";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {TempService} from "../service/temp.service";
 
 
 @Component({
@@ -6,7 +10,12 @@ import { Component } from '@angular/core';
   templateUrl: './hero-form.component.html',
   styleUrls: ['./hero-form.component.css']
 })
-export class HeroFormComponent {
+export class HeroFormComponent{
+
+  constructor(
+      private tempService: TempService,
+      private router: Router,
+  ) {}
 
   title = ['Title Page', 'Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5'];
 
@@ -28,6 +37,13 @@ export class HeroFormComponent {
 
   submitted = false;
 
-  onSubmit() { this.submitted = true; }
+  onSubmit() {
+    console.log('Submit');
+    this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
+      this.alignment, this.temp1, this.temp2, () => {
+      this.router.navigate(['/temp']);
+    });
+    this.submitted = true;
+  }
 
 }
