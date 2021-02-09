@@ -3,7 +3,7 @@ import {RegistrationService} from "../service/registration.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {TempService} from "../service/temp.service";
-
+import {DownloadService} from "../service/download.service";
 
 @Component({
   selector: 'app-hero-form',
@@ -15,6 +15,7 @@ export class HeroFormComponent{
   constructor(
       private tempService: TempService,
       private router: Router,
+      private downloadService: DownloadService
   ) {}
 
   title = ['Title Page', 'Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5'];
@@ -39,10 +40,19 @@ export class HeroFormComponent{
 
   onSubmit() {
     console.log('Submit');
-    this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
-      this.alignment, this.temp1, this.temp2, () => {
-      this.router.navigate(['/temp']);
-    });
+    this.downloadService.download('http://localhost:8080/download_angular')
+      .subscribe(blob => {
+        const a = document.createElement('a')
+        const objectUrl = URL.createObjectURL(blob)
+        a.href = objectUrl
+        a.download = 'doc.docx';
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      });
+    // this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
+    //   this.alignment, this.temp1, this.temp2, () => {
+    //   this.router.navigate(['/temp']);
+    // });
     this.submitted = true;
   }
 

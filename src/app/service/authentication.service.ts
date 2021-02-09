@@ -10,6 +10,8 @@ export class AuthenticationService {
   authenticated = false;
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
   credentials : {username: string, password: string} = {username: null, password: null};
+  storedPassword = '';
+  storedUsername = '';
   constructor(private http: HttpClient) {
   }
 
@@ -17,9 +19,10 @@ export class AuthenticationService {
 
   authenticate(credentials, callback) {
     console.log(credentials);
-    this.http.get(`http://localhost:8080/angular/login`,
+    this.http.get(`http://localhost:8080/test_angular`,
       { headers: { authorization: this.createBasicAuthToken(credentials.username, credentials.password) } }).subscribe( response => {
       if (response && response['username']) {
+        console.log(response);
         this.credentials = credentials;
         this.registerSuccessfulLogin(credentials.username, credentials.password);
       }
@@ -34,10 +37,14 @@ export class AuthenticationService {
 
   registerSuccessfulLogin(username, password) {
     sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username)
+    sessionStorage.setItem('basicauth', this.createBasicAuthToken(username, password))
+    this.storedPassword = password
+    this.storedUsername = username
   }
 
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    sessionStorage.removeItem('basicauth');
     this.credentials.username = null;
     this.credentials.password = null;
     this.authenticated = false;
