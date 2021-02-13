@@ -13,7 +13,7 @@ export class RegistrationService {
   registrate(credentials, callback) {
     console.log(credentials)
     this.http.get(`http://localhost:8080/registration_angular`,
-      { headers: { authorization: this.createBasicAuthToken('registration', 'registration'), registration: this.createBasicRegToken(credentials.username,
+      { headers: {  registration: this.createBasicRegToken(credentials.username,
             credentials.password, credentials.confirmationPassword) } }).subscribe( response => {
       if (response != null && response['username']) {
         this.credentials = credentials;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {FileUploadService} from "../service/file-upload.service";
 
 @Component({
   selector: 'app-drop-zone',
@@ -13,7 +14,21 @@ export class DropZoneComponent implements OnInit {
 
   files: File[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private fileUploadService: FileUploadService
+  ) { }
+
+  // uploadFileToActivity() {
+  //   this.fileUploadService.postFile(this.files[0]).subscribe(data => {
+  //     // do something, if upload success
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
+    uploadFileToActivity() {
+
+    }
 
   onSelect(event) {
     console.log(event);

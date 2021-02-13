@@ -25,6 +25,10 @@ export class AuthenticationService {
         console.log(response);
         this.credentials = credentials;
         this.registerSuccessfulLogin(credentials.username, credentials.password);
+        if (response['manager']){
+          console.log('manager');
+          this.registerManager();
+        }
       }
       console.log(this.isUserLoggedIn());
       return callback && callback();
@@ -42,6 +46,9 @@ export class AuthenticationService {
     this.storedUsername = username
   }
 
+  registerManager(){
+    sessionStorage.setItem('manager', 'manager');
+  }
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     sessionStorage.removeItem('basicauth');

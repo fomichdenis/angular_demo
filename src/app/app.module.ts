@@ -31,7 +31,7 @@ import {RegistrationPageComponent} from './registration-page/registration-page.c
     TopBarComponent,
     DropZoneComponent,
     HeroFormComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
   ],
     imports: [
         BrowserModule,
