@@ -17,12 +17,11 @@
 
     <app-text-field
       [disabled]="false"
-      [(value)]="this.credentials.password"
+      [(value)]="this.credentials.confirmationPassword"
       [type]="'password'"
-      [label]="'Password'"
+      [label]="'Confirm password'"
       (keyup.enter)="Registrate()">
     </app-text-field>
-
     <button id="submit" (click)="Registrate()">Create new user</button>
   </div>
 </div>
