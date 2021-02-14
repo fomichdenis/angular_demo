@@ -1,0 +1,6 @@
+export class Group {
+  constructor(
+    public login: string,
+    public status: string,
+  ) {  }
+}

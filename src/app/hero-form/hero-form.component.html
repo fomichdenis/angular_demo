@@ -5,283 +5,284 @@
 
   <div class="globals">
   <label for="title">Template</label>
-  <select name="cargo_name" class="form-control" id="Head">
+  <select [(ngModel)]="template.global_head" name="cargo_name" class="form-control" id="Head">
     <option *ngFor="let pow of title" [value]="pow">{{pow}}</option>
   </select>
 
-  <select class="form-control" id="fields" required>
+  <select [(ngModel)]="template.global_field" class="form-control" id="fields" required>
     <option *ngFor="let pow of fields" [value]="pow">{{pow}}</option>
   </select>
 
-  <select class="form-control" id="interval" required>
+  <select [(ngModel)]="template.global_interval" class="form-control" id="interval" required>
     <option *ngFor="let pow of interval" [value]="pow">{{pow}}</option>
   </select>
 
   <div *ngFor="let item of temp1">
-    <input type="checkbox">{{item}}
+    <input [(ngModel)]="template.global_temp1" type="checkbox">{{item}}
   </div>
   </div>
 
 
   <label for="Title">Title Page</label>
-  <div class="Header2" id="Title">
+  <div class="TitleP" id="Title">
 
-    <select class="form-control" id="alignment_title" required>
+    <select required [(ngModel)]="template.title_alignment" class="form-control" id="alignment_title" ngModel required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
     <label for="Name">Name</label>
     <div class="Name" id="Name">
-      <select class="form-control" id="font_name" required>
+      <select [(ngModel)]="template.name_font" class="form-control" id="font_name" required>
         <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
       </select>
 
-      <select class="form-control" id="fonsize_name" required>
+      <select [(ngModel)]="template.name_fontsize" class="form-control" id="fonsize_name" required>
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
       <div *ngFor="let item of temp2">
-        <input type="checkbox">{{item}}
+        <input [(ngModel)]="template.name_temp2" type="checkbox">{{item}}
       </div>
 
       <label for="name2.1">Text colour</label>
-      <input id="name2.1" type="color">
+      <input [(ngModel)]="template.name_colour" id="name2.1" type="color">
 
       <label for="name2.2">Text highlight colour</label>
-      <input id="name2.2" type="color">
+      <input [(ngModel)]="template.name_highlight_colour" id="name2.2" type="color">
     </div>
 
 
     <label for="Organization">Organization</label>
     <div class="Organization" id="Organization">
-      <select class="form-control" id="font_Organization" required>
+      <select [(ngModel)]="template.org_font" class="form-control" id="font_Organization" required>
         <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
       </select>
 
-      <select class="form-control" id="fonsize_Organization" required>
+      <select [(ngModel)]="template.org_fontsize" class="form-control" id="fonsize_Organization" required>
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
       <div *ngFor="let item of temp2">
-        <input type="checkbox">{{item}}
+        <input [(ngModel)]="template.org_temp2" type="checkbox">{{item}}
       </div>
 
       <label for="Organization2.1">Text colour</label>
-      <input id="Organization2.1" type="color">
+      <input [(ngModel)]="template.org_colour" id="Organization2.1" type="color">
 
       <label for="Organization2.2">Text highlight colour</label>
-      <input id="Organization2.2" type="color">
+      <input [(ngModel)]="template.org_highlight_colour" id="Organization2.2" type="color">
     </div>
 
 
     <label for="Description">Description</label>
     <div class="Description" id="Description">
-      <select class="form-control" id="font_Description" required>
+      <select [(ngModel)]="template.desc_font" class="form-control" id="font_Description" required>
         <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
       </select>
 
-      <select class="form-control" id="fonsize_Description" required>
+      <select [(ngModel)]="template.desc_fontsize" class="form-control" id="fonsize_Description" required>
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
       <div *ngFor="let item of temp2">
-        <input type="checkbox">{{item}}
+        <input [(ngModel)]="template.desc_temp2" type="checkbox">{{item}}
       </div>
 
       <label for="Description2.1">Text colour</label>
-      <input id="Description2.1" type="color">
+      <input [(ngModel)]="template.desc_colour" id="Description2.1" type="color">
 
       <label for="Description2.2">Text highlight colour</label>
-      <input id="Description2.2" type="color">
+      <input [(ngModel)]="template.desc_highlight_colour" id="Description2.2" type="color">
     </div>
 
 
     <label for="Type">Type</label>
     <div class="Type" id="Type">
-      <select class="form-control" id="font_Type" required>
+      <select [(ngModel)]="template.type_font" class="form-control" id="font_Type" required>
         <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
       </select>
 
-      <select class="form-control" id="fonsize_Type" required>
+      <select [(ngModel)]="template.type_fontsize" class="form-control" id="fonsize_Type" required>
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
-      <select class="form-control" id="alignment_Type" required>
+      <select [(ngModel)]="template.type_alignment" class="form-control" id="alignment_Type" required>
         <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
       </select>
 
       <div *ngFor="let item of temp2">
-        <input type="checkbox">{{item}}
+        <input [(ngModel)]="template.type_temp2" type="checkbox">{{item}}
       </div>
 
       <label for="Type2.1">Text colour</label>
-      <input id="Type2.1" type="color">
+      <input [(ngModel)]="template.type_colour" id="Type2.1" type="color">
 
       <label for="Type2.2">Text highlight colour</label>
-      <input id="Type2.2" type="color">
+      <input [(ngModel)]="template.type_highlight_colour" id="Type2.2" type="color">
     </div>
 
   </div>
 
   <label for="Hd1">Header 1</label>
   <div class="Header1" id="Hd1">
-    <select class="form-control" id="font1" required>
+    <select [(ngModel)]="template.h1_font" class="form-control" id="font1" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize1" required>
+    <select [(ngModel)]="template.h1_fontsize" class="form-control" id="fonsize1" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-  <select class="form-control" id="alignment1" required>
+  <select [(ngModel)]="template.h1_alignment" class="form-control" id="alignment1" required>
     <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
   </select>
 
   <div *ngFor="let item of temp2">
-    <input type="checkbox">{{item}}
+    <input [(ngModel)]="template.h1_temp2" type="checkbox">{{item}}
   </div>
 
     <label for="c1.1">Text colour</label>
-  <input id="c1.1" type="color">
+  <input [(ngModel)]="template.h1_colour" id="c1.1" type="color">
 
     <label for="c1.2">Text highlight colour</label>
-    <input id="c1.2" type="color">
+    <input [(ngModel)]="template.h1_highlight_colour" id="c1.2" type="color">
   </div>
 
 
   <label for="Hd2">Header 2</label>
   <div class="Header2" id="Hd2">
-    <select class="form-control" id="font2" required>
+    <select [(ngModel)]="template.h2_font" class="form-control" id="font2" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize2" required>
+    <select [(ngModel)]="template.h2_fontsize" class="form-control" id="fonsize2" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="alignment2" required>
+    <select [(ngModel)]="template.h2_alignment" class="form-control" id="alignment2" required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
     <div *ngFor="let item of temp2">
-      <input type="checkbox">{{item}}
+      <input [(ngModel)]="template.h2_temp2" type="checkbox">{{item}}
     </div>
 
     <label for="c2.1">Text colour</label>
-    <input id="c2.1" type="color">
+    <input [(ngModel)]="template.h2_colour" id="c2.1" type="color">
 
     <label for="c2.2">Text highlight colour</label>
-    <input id="c2.2" type="color">
+    <input [(ngModel)]="template.h2_highlight_colour" id="c2.2" type="color">
   </div>
 
 
   <label for="Hd3">Header 3</label>
   <div class="Header3" id="Hd3">
-    <select class="form-control" id="font3" required>
+    <select [(ngModel)]="template.h3_font" class="form-control" id="font3" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize3" required>
+    <select [(ngModel)]="template.h3_fontsize" class="form-control" id="fonsize3" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="alignment3" required>
+    <select [(ngModel)]="template.h3_alignment" class="form-control" id="alignment3" required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
     <div *ngFor="let item of temp2">
-      <input type="checkbox">{{item}}
+      <input [(ngModel)]="template.h3_temp2" type="checkbox">{{item}}
     </div>
 
     <label for="c3.1">Text colour</label>
-    <input id="c3.1" type="color">
+    <input [(ngModel)]="template.h3_colour" id="c3.1" type="color">
 
     <label for="c3.2">Text highlight colour</label>
-    <input id="c3.2" type="color">
+    <input [(ngModel)]="template.h3_highlight_colour" id="c3.2" type="color">
   </div>
 
 
   <label for="Hd4">Header 4</label>
   <div class="Header4" id="Hd4">
-    <select class="form-control" id="font4" required>
+    <select [(ngModel)]="template.h4_font" class="form-control" id="font4" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize4" required>
+    <select [(ngModel)]="template.h4_fontsize" class="form-control" id="fonsize4" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="alignment4" required>
+    <select [(ngModel)]="template.h4_alignment" class="form-control" id="alignment4" required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
     <div *ngFor="let item of temp2">
-      <input type="checkbox">{{item}}
+      <input [(ngModel)]="template.h4_temp2" type="checkbox">{{item}}
     </div>
 
     <label for="c4.1">Text colour</label>
-    <input id="c4.1" type="color">
+    <input [(ngModel)]="template.h4_colour" id="c4.1" type="color">
 
     <label for="c4.2">Text highlight colour</label>
-    <input id="c4.2" type="color">
+    <input [(ngModel)]="template.h4_highlight_colour" id="c4.2" type="color">
   </div>
 
 
   <label for="Hd5">Header 5</label>
   <div class="Header5" id="Hd5">
-    <select class="form-control" id="font5" required>
+    <select [(ngModel)]="template.h5_font" class="form-control" id="font5" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize5" required>
+    <select [(ngModel)]="template.h5_fontsize" class="form-control" id="fonsize5" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="alignment5" required>
+    <select [(ngModel)]="template.h5_alignment" class="form-control" id="alignment5" required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
     <div *ngFor="let item of temp2">
-      <input type="checkbox">{{item}}
+      <input [(ngModel)]="template.h5_temp2" type="checkbox">{{item}}
     </div>
 
     <label for="c5.1">Text colour</label>
-    <input id="c5.1" type="color">
+    <input [(ngModel)]="template.h5_colour" id="c5.1" type="color">
 
     <label for="c5.2">Text highlight colour</label>
-    <input id="c5.2" type="color">
+    <input [(ngModel)]="template.h5_highlight_colour" id="c5.2" type="color">
   </div>
 
 
   <label for="Table">Table</label>
   <div class="Table" id="Table">
-    <select class="form-control" id="font_Table" required>
+    <select [(ngModel)]="template.table_font" class="form-control" id="font_Table" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
 
-    <select class="form-control" id="fonsize_Table" required>
+    <select [(ngModel)]="template.table_fontsize" class="form-control" id="fonsize_Table" required>
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
     <div *ngFor="let item of temp2">
-      <input type="checkbox">{{item}}
+      <input [(ngModel)]="template.table_temp2" type="checkbox">{{item}}
     </div>
 
     <label for="Table5.1">Heading cell text colour</label>
-    <input id="Table5.1" type="color">
+    <input [(ngModel)]="template.table_Heading_cell_text_colour" id="Table5.1" type="color">
 
     <label for="Table5.2">Heading cell colour</label>
-    <input id="Table5.2" type="color">
+    <input [(ngModel)]="template.table_Heading_cell_colour" id="Table5.2" type="color">
 
     <label for="Table5.3">Cell border colour</label>
-    <input id="Table5.3" type="color">
+    <input [(ngModel)]="template.table_Cell_border_colour" id="Table5.3" type="color">
 
     <label for="Table5.4">Common cell colour</label>
-    <input id="Table5.4" type="color">
+    <input [(ngModel)]="template.table_Common_cell_colour" id="Table5.4" type="color">
 
 
   </div>
 
-  <button id="submit" (click)="onSubmit()">Submit</button>
+  <<button id="submit" (click)="submit()">Submit</button>
+
 </div>
 
