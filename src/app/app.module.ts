@@ -17,6 +17,7 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import {RegistrationPageComponent} from './registration-page/registration-page.component';
+import {AccountSettingsComponent} from './account-settings/account-settings.component';
 
 
 
@@ -29,6 +30,7 @@ import {RegistrationPageComponent} from './registration-page/registration-page.c
     UploadFileComponent,
     DragDropDirective,
     TopBarComponent,
+    AccountSettingsComponent,
     DropZoneComponent,
     HeroFormComponent,
     RegistrationPageComponent

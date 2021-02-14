@@ -28,8 +28,4 @@ export class LoginPageComponent implements OnInit {
     return false;
   }
 
-  Registration() {
-    return false;
-  }
-
 }
