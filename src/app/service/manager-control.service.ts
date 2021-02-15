@@ -10,7 +10,7 @@ export class ManagerControlService {
   constructor(private http: HttpClient) {}
 
   getGroupUsers(url, callback){
-    return this.http.get(url).subscribe(response => {
+    return this.http.post(url, {}).subscribe(response => {
       if (response != null) {
         console.log(response);
         return callback && callback();
@@ -20,7 +20,7 @@ export class ManagerControlService {
   }
 
   addUserToGroup(url, username, callback){
-    return this.http.get(url, {headers: {name: username}}).subscribe(response => {
+    return this.http.post(url, {username}).subscribe(response => {
       if (response != null) {
         console.log(response);
         return callback && callback();
@@ -30,7 +30,7 @@ export class ManagerControlService {
   }
 
   deleteUserFromGroup(url, username, callback){
-    return this.http.get(url, {headers: {'username': username}}).subscribe(response => {
+    return this.http.post(url, {username}).subscribe(response => {
       if (response != null) {
         console.log(response);
         return callback && callback();

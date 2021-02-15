@@ -3,8 +3,8 @@ import {RegistrationService} from "../service/registration.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {TempService} from "../service/temp.service";
-import {DownloadService} from "../service/download.service";
 import {ManagerControlService} from "../service/manager-control.service";
+import {FileUploadService} from "../service/file-upload.service";
 
 @Component({
   selector: 'app-hero-form',
@@ -16,7 +16,7 @@ export class HeroFormComponent{
   constructor(
       private tempService: TempService,
       private router: Router,
-      private downloadService: DownloadService,
+      private fileUploadService: FileUploadService,
       private http: HttpClient,
       private managerControlService: ManagerControlService
   ) {}
@@ -45,9 +45,9 @@ export class HeroFormComponent{
 
   submitted = false;
 
-  onSubmit() {
-    console.log('Submit');
-    this.downloadService.download('http://localhost:8080/download_angular')
+  download() {
+    console.log('Download');
+    this.fileUploadService.download('http://localhost:8080/download_angular')
       .subscribe(blob => {
         const a = document.createElement('a')
         const objectUrl = URL.createObjectURL(blob)
@@ -63,16 +63,24 @@ export class HeroFormComponent{
     this.submitted = true;
   }
 
+  onSubmit() {
+    console.log('Submit')
+    this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
+      this.alignment, this.temp1, this.temp2, () => {
+      this.router.navigate(['/temp']);
+    });
+  }
+
   getTemplate() {
     console.log('TemplateId ' + this.templateId);
-    this.downloadService.getTemplate('http://localhost:8080/get_template_angular', this.templateId, () => {
+    this.fileUploadService.getTemplate('http://localhost:8080/get_template_angular', this.templateId, () => {
       this.router.navigate(['/temp']);
     });
   }
 
   getGroupUsers(){
     if (sessionStorage.getItem('manager')) {
-      this.managerControlService.getGroupUsers('http://localhost:8080/get_group_users_angular', () => {
+      this.managerControlService.getGroupUsers('http://localhost:8080/get_department_users_angular', () => {
         this.router.navigate(['/temp']);
       });
     }
@@ -80,7 +88,7 @@ export class HeroFormComponent{
 
   addUserToGroup(){
     if (sessionStorage.getItem('manager')) {
-      this.managerControlService.addUserToGroup('http://localhost:8080/add_user_to_group_angular', this.usernameToAdd, () => {
+      this.managerControlService.addUserToGroup('http://localhost:8080/add_user_to_department_angular', this.usernameToAdd, () => {
         this.router.navigate(['/temp']);
       });
     }
@@ -88,7 +96,7 @@ export class HeroFormComponent{
 
   deleteUserFromGroup(){
     if (sessionStorage.getItem('manager')) {
-      this.managerControlService.deleteUserFromGroup('http://localhost:8080/delete_user_from_group_angular', this.usernameToDelete, () => {
+      this.managerControlService.deleteUserFromGroup('http://localhost:8080/delete_user_from_department_angular', this.usernameToDelete, () => {
         this.router.navigate(['/temp']);
       });
     }
