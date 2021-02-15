@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AuthenticationService} from '../service/authentication.service';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {TopBarComponent} from '../top-bar/top-bar.component';
+import {AuthenticationService} from "../service/authentication.service";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {TopBarComponent} from "../top-bar/top-bar.component";
 
 @Component({
   selector: 'app-login-page',
@@ -25,12 +25,6 @@ export class LoginPageComponent implements OnInit {
     this.authenticationService.authenticate(this.credentials, () => {
       this.router.navigate(['/templater']);
     });
-    return false;
-  }
-
-  Registration() {
-    console.log('registration');
-    this.router.navigate(['/reg']);
     return false;
   }
 

@@ -19,10 +19,13 @@ export class FileUploadService {
   getTemplate(url, Id, callback){
     console.log(Id);
     return this.http.post(url, {Id}).subscribe(response => {
-      if (response != null && response['id']) {
+      if (response != null) {
         console.log(response);
-        return callback && callback();
       }
+      else{
+        console.log('Error');
+      }
+      return callback && callback();
     });
   }
 
