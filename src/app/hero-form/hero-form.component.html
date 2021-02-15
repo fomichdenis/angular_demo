@@ -282,7 +282,56 @@
 
   </div>
 
-  <<button id="submit" (click)="submit()">Submit</button>
+  <button id="submit0" (click)="onSubmit()">Submit</button>
 
+  <p></p>
+
+  <button id="submit1" (click)="download()">Download</button>
+
+  <p></p>
+  <div class="container">
+    <div>
+      <app-text-field
+        [disabled]="false"
+        [(value)]="this.templateId"
+        [label]="'templateId'"
+        (keyup.enter)="getTemplate()">
+      </app-text-field>
+    </div>
+  </div>
+
+  <button id="submit2" (click)="getTemplate()">Get template</button>
+  <p></p>
+
+  <button id="submit5" (click)="getTemplates()">Get templates</button>
+  <p></p>
+
+  <button id="submit3" (click)="getGroupUsers()">Get group users</button>
+  <p></p>
+
+  <div class="container">
+    <div>
+      <app-text-field
+        [disabled]="false"
+        [(value)]="this.usernameToAdd"
+        [label]="'username To Add'"
+        (keyup.enter)="addUserToGroup()">
+      </app-text-field>
+    </div>
+  </div>
+  <button id="submit4" (click)="addUserToGroup()">Add user to group</button>
+  <p></p>
+
+  <div class="container">
+    <div>
+      <app-text-field
+        [disabled]="false"
+        [(value)]="this.usernameToDelete"
+        [label]="'username To Delete'"
+        (keyup.enter)="deleteUserFromGroup()">
+      </app-text-field>
+    </div>
+  </div>
+  <button id="submit4" (click)="deleteUserFromGroup()">Delete user from group</button>
 </div>
 

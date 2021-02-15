@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
+import {FileUploadService} from "../service/file-upload.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-drop-zone',
@@ -12,8 +14,17 @@ export class DropZoneComponent implements OnInit {
   }
 
   files: File[] = [];
+  // title = 'File-Upload-Save';
+  // selectedFiles: FileList;
+  // currentFileUpload: File;
+  // progress: { percentage: number } = { percentage: 0 };
+  // selectedFile = null;
+  // changeImage = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private uploadService: FileUploadService
+  ) {}
 
   onSelect(event) {
     console.log(event);
@@ -25,21 +36,28 @@ export class DropZoneComponent implements OnInit {
       formData.append("file[]", this.files[i]);
     }
 
-/*    this.http.post('http://localhost:8001/upload.php', formData)
-
+    this.http.post('http://localhost:8080/upload_angular', formData)
       .subscribe(res => {
-
         console.log(res);
-
         alert('Uploaded Successfully.');
+      });
 
-      })
-*/
   }
 
   onRemove(event) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  upload(){
+    console.log('Upload');
+    this.uploadService.upload(this.files[0], 'http://localhost:8080/upload_angular').
+      subscribe(response => {
+      if (response) {
+        console.log('Succesful upload');
+      }
+      console.log('Unsuccesful upload')
+      });
   }
 
 }

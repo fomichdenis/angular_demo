@@ -12,8 +12,8 @@ export class RegistrationService {
   }
   registrate(credentials, callback) {
     console.log(credentials)
-    this.http.get(`http://localhost:8080/angular/registration`,
-      { headers: { authorization: this.createBasicAuthToken(credentials.username,
+    this.http.get(`http://localhost:8080/registration_angular`,
+      { headers: {  registration: this.createBasicRegToken(credentials.username,
             credentials.password, credentials.confirmationPassword) } }).subscribe( response => {
       if (response != null && response['username']) {
         this.credentials = credentials;
@@ -22,7 +22,10 @@ export class RegistrationService {
       }
     });
   }
-  createBasicAuthToken(username: String, password: String, confirmationPassword: String) {
+  createBasicRegToken(username: String, password: String, confirmationPassword: String) {
     return 'Basic ' + window.btoa(username + ":" + password + ":" + confirmationPassword);
+  }
+  createBasicAuthToken(username: String, password: String) {
+    return 'Basic ' + window.btoa(username + ":" + password);
   }
 }

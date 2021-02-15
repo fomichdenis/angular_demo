@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import {NgForm} from '@angular/forms';
-
+import {RegistrationService} from "../service/registration.service";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {TempService} from "../service/temp.service";
+import {ManagerControlService} from "../service/manager-control.service";
+import {FileUploadService} from "../service/file-upload.service";
 
 @Component({
   selector: 'app-hero-form',
@@ -8,6 +12,14 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./hero-form.component.css']
 })
 export class HeroFormComponent {
+
+  constructor(
+      private tempService: TempService,
+      private router: Router,
+      private fileUploadService: FileUploadService,
+      private http: HttpClient,
+      private managerControlService: ManagerControlService
+  ) {}
 
   title = ['Title Page', 'Header 1', 'Header 2', 'Header 3', 'Header 4', 'Header 5'];
 
@@ -25,9 +37,14 @@ export class HeroFormComponent {
 
   temp2 = ['Bold', 'Italic', 'Underline'];
 
+  templateId = '';
 
+  usernameToAdd = '';
+
+  usernameToDelete = '';
 
   submitted = false;
+
   template = {
     title_alignment: '',
     name_font: '',
@@ -93,8 +110,68 @@ export class HeroFormComponent {
     global_head: '',
     global_field: '',
   };
-  submit(){
-    console.log('login = ' + this.template.h5_alignment + ', password = ' + this.template.h5_font);
+
+  download() {
+    console.log('Download');
+    this.fileUploadService.download('http://localhost:8080/download_angular')
+      .subscribe(blob => {
+        const a = document.createElement('a')
+        const objectUrl = URL.createObjectURL(blob)
+        a.href = objectUrl
+        a.download = 'doc.docx';
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      });
+    // this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
+    //   this.alignment, this.temp1, this.temp2, () => {
+    //   this.router.navigate(['/temp']);
+    // });
+    this.submitted = true;
   }
 
+  onSubmit() {
+    console.log('Submit')
+    this.tempService.saveTemplate(this.title, this.interval, this.font, this.fonsize, this.fields,
+      this.alignment, this.temp1, this.temp2, () => {
+        this.router.navigate(['/temp']);
+      });
+  }
+
+  getTemplate() {
+    console.log('TemplateId ' + this.templateId);
+    this.fileUploadService.getTemplate('http://localhost:8080/get_template_angular', this.templateId, () => {
+      this.router.navigate(['/temp']);
+    });
+  }
+
+  getTemplates() {
+    this.fileUploadService.getTemplate('http://localhost:8080/get_templates_angular', this.templateId, () => {
+      this.router.navigate(['/temp']);
+    });
+  }
+
+  getGroupUsers(){
+    if (sessionStorage.getItem('manager')) {
+      this.managerControlService.getGroupUsers('http://localhost:8080/get_department_users_angular', () => {
+        this.router.navigate(['/temp']);
+      });
+    }
+  }
+
+
+  addUserToGroup(){
+    if (sessionStorage.getItem('manager')) {
+      this.managerControlService.addUserToGroup('http://localhost:8080/add_user_to_department_angular', this.usernameToAdd, () => {
+        this.router.navigate(['/temp']);
+      });
+    }
+  }
+
+  deleteUserFromGroup(){
+    if (sessionStorage.getItem('manager')) {
+      this.managerControlService.deleteUserFromGroup('http://localhost:8080/delete_user_from_department_angular', this.usernameToDelete, () => {
+        this.router.navigate(['/temp']);
+      });
+    }
+  }
 }

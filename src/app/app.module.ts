@@ -33,7 +33,7 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
     AccountSettingsComponent,
     DropZoneComponent,
     HeroFormComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
   ],
     imports: [
         BrowserModule,
