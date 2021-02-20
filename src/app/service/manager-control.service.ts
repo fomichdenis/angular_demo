@@ -7,35 +7,24 @@ import {Observable} from "rxjs";
 })
 export class ManagerControlService {
 
+
   constructor(private http: HttpClient) {}
 
-  getGroupUsers(url, callback){
-    return this.http.post(url, {}).subscribe(response => {
-      if (response != null) {
-        console.log(response);
-        return callback && callback();
-      }
-      return callback && callback();
-    });
+  getGroupUsers(): Observable<string[]>{
+    return this.http.post<string[]>('http://localhost:8080/get_department_users_angular', {});
   }
 
-  addUserToGroup(url, username, callback){
-    return this.http.post(url, {username}).subscribe(response => {
-      if (response != null) {
-        console.log(response);
-        return callback && callback();
-      }
-      return callback && callback();
-    });
+  addUserToGroup(username){
+    return this.http.post('http://localhost:8080/add_user_to_department_angular', {username},
+      {headers: {'Content-Type': 'application/json'}});
   }
 
-  deleteUserFromGroup(url, username, callback){
-    return this.http.post(url, {username}).subscribe(response => {
-      if (response != null) {
-        console.log(response);
-        return callback && callback();
-      }
-      return callback && callback();
-    });
+  deleteUserFromGroup(username){
+    return this.http.post('http://localhost:8080/delete_user_from_department_angular', {username},
+      {headers: {'Content-Type': 'application/json'}});
+  }
+
+  getGroup(){
+    return this.http.post('http://localhost:8080/get_department_angular', {});
   }
 }

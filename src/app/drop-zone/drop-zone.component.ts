@@ -32,16 +32,22 @@ export class DropZoneComponent implements OnInit {
 
     const formData = new FormData();
 
-    for (let i = 0; i < this.files.length; i++) {
+    // for (let i = 0; i < this.files.length; i++) {
+    //   formData.append("file[]", this.files[i]);
+    // }
+    // formData.append("file[]", this.files[0]);
+    //
+    // this.http.post('http://localhost:8080/upload_angular', formData)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //     alert('Uploaded Successfully.');
+    //   });
+    for (let i = 0; i < this.files.length; i++){
+      this.uploadService.upload(this.files[i], 'http://localhost:8080/upload_angular').subscribe(res => {
+        //console.log(res);
+      });
       formData.append("file[]", this.files[i]);
     }
-
-    this.http.post('http://localhost:8080/upload_angular', formData)
-      .subscribe(res => {
-        console.log(res);
-        alert('Uploaded Successfully.');
-      });
-
   }
 
   onRemove(event) {
