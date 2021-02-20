@@ -12,15 +12,15 @@ export class HttpInterceptorService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.authenticationService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {
-      console.log(sessionStorage.getItem('basicauth'));
+      // console.log(sessionStorage.getItem('basicauth'));
       console.log(req);
       const authReq = req.clone({
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
+          //'Content-Type': 'application/json',
           'authorization': sessionStorage.getItem('basicauth')
         })
       });
-      console.log(authReq);
+      // console.log(authReq);
       return next.handle(authReq);
     } else {
       return next.handle(req);

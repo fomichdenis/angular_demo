@@ -4,18 +4,22 @@
 
   <h2>{{info.acc_name}}</h2>
   <h2>{{info.group_name}}</h2>
+  <div *ngIf="role == 'manager'">
+
   <app-text-field
     [disabled]="false"
     [(value)]="this.info.user_del"
-    (keyup.enter)="Kickuser(this.info.user_del)">
+    (keyup.enter)="KickUser(this.info.user_del)">
   </app-text-field>
-  <button id="kickuser" (click)="Kickuser(this.info.user_del)">Kick User from your group</button><br>
+  <button id="kickuser" (click)="KickUser(this.info.user_del)">Kick User from your group</button><br>
   <app-text-field
     [disabled]="false"
     [(value)]="this.info.user_add"
-    (keyup.enter)="Adduser(this.info.user_add)">
+    (keyup.enter)="AddUser(this.info.user_add)">
   </app-text-field>
-  <button id="adduser" (click)="Adduser(this.info.user_add)">Add User to your group</button><br>
+  <button id="adduser" (click)="AddUser(this.info.user_add)">Add User to your group</button><br>
+
+  </div>
 
   <button id="logout" (click)="Logout()">Log Out</button><br>
 

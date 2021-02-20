@@ -11,43 +11,28 @@ export class FileUploadService {
     private http: HttpClient
   ) { }
 
-  download(url: string): Observable<Blob> {
-    return this.http.post(url, {}, {
+  download(url: string, template): Observable<Blob> {
+    return this.http.post(url, template, {
       responseType: 'blob'
-    })
-  }
-  getTemplate(url, Id, callback){
-    console.log(Id);
-    return this.http.post(url, {Id}).subscribe(response => {
-      if (response != null) {
-        console.log(response);
-      }
-      else{
-        console.log('Error');
-      }
-      return callback && callback();
     });
   }
-
-  // upload(file: File, url): Observable<HttpEvent<any>> {
-  //   const formData: FormData = new FormData();
-  //
-  //   formData.append('file', file, file.name);
-  //
-  //   const req = new HttpRequest('POST', url, formData, {
-  //     reportProgress: true,
-  //     responseType: 'json'
-  //   });
-  //
-  //   return this.http.request(req);
-  // }
+  getTemplate(Id){
+    console.log(Id);
+    return this.http.post('http://localhost:8080/get_template_angular', {Id});
+  }
+  getTemplates(){
+    return this.http.post<string[]>('http://localhost:8080/get_templates_angular', {});
+  }
   upload(file: File, url): Observable<HttpEvent<any>> {
     const data: FormData = new FormData();
-    data.append('file', file);
+    data.set('file', file);
+    console.log('upload');
     const newRequest = new HttpRequest('POST', url, data, {
       reportProgress: true,
       responseType: 'text'
     });
+    console.log(data.get('file'));
+    console.log(data);
     return this.http.request(newRequest);
   }
 
