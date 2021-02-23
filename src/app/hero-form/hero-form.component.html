@@ -17,9 +17,45 @@
     <option *ngFor="let pow of interval" [value]="pow">{{pow}}</option>
   </select>
 
-  <div *ngFor="let item of temp1">
+    <label>Title page :
+      <input type="checkbox"
+             name="Title page"
+             (change)="template.title_page = $event.target.checked ? '1': '0'"
+             [checked]="template.title_page == '1'"
+      >
+      <div>title page = {{template.title_page}} </div>
+    </label>
+    <br>
+    <label>Numeration:
+      <input type="checkbox"
+             name="Numeration"
+             (change)="template.numeration = $event.target.checked ? '1': '0'"
+             [checked]="template.numeration == '1'"
+      >
+      <div>numeration = {{template.numeration}} </div>
+    </label>
+    <br>
+    <label>Footer:
+      <input type="checkbox"
+             name="Footer"
+             (change)="template.footer = $event.target.checked ? '1': '0'"
+             [checked]="template.footer == '1'"
+      >
+      <div>Footer = {{template.footer}}</div>
+    </label>
+    <br>
+    <label>Header:
+      <input type="checkbox"
+             name="Header"
+             (change)="template.header = $event.target.checked ? '1': '0'"
+             [checked]="template.header == '1'"
+      >
+      <div>header = {{template.header}}</div>
+    </label>
+
+  <!--<div *ngFor="let item of temp1">
     <input [(ngModel)]="template.global_temp1" type="checkbox">{{item}}
-  </div>
+  </div>-->
   </div>
 
 
@@ -40,10 +76,33 @@
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
-      <div *ngFor="let item of temp2">
+      <!--<div *ngFor="let item of temp2">
         <input [(ngModel)]="template.title_name_temp2" type="checkbox">{{item}}
-      </div>
-
+      </div>-->
+      <label>Bold:
+        <input type="checkbox"
+               name="Bold"
+               (change)="template.title_name_bold = $event.target.checked ? '1': '0'"
+        >
+        <div>Bold = {{template.title_name_bold}}</div>
+      </label>
+      <br>
+      <label>Italic:
+        <input type="checkbox"
+               name="Italic"
+               (change)="template.title_name_italic = $event.target.checked ? '1': '0'"
+        >
+        <div>Italic = {{template.title_name_italic}}</div>
+      </label>
+      <br>
+      <label>Underline:
+        <input type="checkbox"
+               name="Underline"
+               (change)="template.title_name_underline = $event.target.checked ? '1': '0'"
+        >
+        <div>Underline = {{template.title_name_underline}}</div>
+      </label>
+      <br>
       <label for="name2.1">Text colour</label>
       <input [(ngModel)]="template.title_name_text_color" id="name2.1" type="color">
 
@@ -62,9 +121,34 @@
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
-      <div *ngFor="let item of temp2">
+      <!--<div *ngFor="let item of temp2">
         <input [(ngModel)]="template.title_organization_temp2" type="checkbox">{{item}}
-      </div>
+      </div>-->
+
+      <label>Bold:
+        <input type="checkbox"
+               name="Bold"
+               (change)="template.title_organization_bold = $event.target.checked ? '1': '0'"
+        >
+        <div>Bold = {{template.title_organization_bold}}</div>
+      </label>
+      <br>
+      <label>Italic:
+        <input type="checkbox"
+               name="Italic"
+               (change)="template.title_organization_italic = $event.target.checked ? '1': '0'"
+        >
+        <div>Italic = {{template.title_organization_italic}}</div>
+      </label>
+      <br>
+      <label>Underline:
+        <input type="checkbox"
+               name="Underline"
+               (change)="template.title_organization_underline = $event.target.checked ? '1': '0'"
+        >
+        <div>Underline = {{template.title_organization_underline}}</div>
+      </label>
+      <br>
 
       <label for="Organization2.1">Text colour</label>
       <input [(ngModel)]="template.title_organization_text_color" id="Organization2.1" type="color">
@@ -84,9 +168,34 @@
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
-      <div *ngFor="let item of temp2">
+      <!--<div *ngFor="let item of temp2">
         <input [(ngModel)]="template.title_description_temp2" type="checkbox">{{item}}
-      </div>
+      </div>-->
+
+      <label>Bold:
+        <input type="checkbox"
+               name="Bold"
+               (change)="template.title_description_bold = $event.target.checked ? '1': '0'"
+        >
+        <div>Bold = {{template.title_description_bold}}</div>
+      </label>
+      <br>
+      <label>Italic:
+        <input type="checkbox"
+               name="Italic"
+               (change)="template.title_description_italic = $event.target.checked ? '1': '0'"
+        >
+        <div>Italic = {{template.title_description_italic}}</div>
+      </label>
+      <br>
+      <label>Underline:
+        <input type="checkbox"
+               name="Underline"
+               (change)="template.title_description_underline = $event.target.checked ? '1': '0'"
+        >
+        <div>Underline = {{template.title_description_underline}}</div>
+      </label>
+      <br>
 
       <label for="Description2.1">Text colour</label>
       <input [(ngModel)]="template.title_description_text_color" id="Description2.1" type="color">
@@ -106,13 +215,38 @@
         <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
       </select>
 
-      <select [(ngModel)]="template.title_type_alignment" class="form-control" id="alignment_Type" required>
+      <select [(ngModel)]="template.title_alignment" class="form-control" id="alignment_Type" required>
         <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
       </select>
 
-      <div *ngFor="let item of temp2">
+      <!--<div *ngFor="let item of temp2">
         <input [(ngModel)]="template.title_type_temp2" type="checkbox">{{item}}
-      </div>
+      </div>-->
+
+      <label>Bold:
+        <input type="checkbox"
+               name="Bold"
+               (change)="template.title_type_bold = $event.target.checked ? '1': '0'"
+        >
+        <div>Bold = {{template.title_type_bold}}</div>
+      </label>
+      <br>
+      <label>Italic:
+        <input type="checkbox"
+               name="Italic"
+               (change)="template.title_type_italic = $event.target.checked ? '1': '0'"
+        >
+        <div>Italic = {{template.title_type_italic}}</div>
+      </label>
+      <br>
+      <label>Underline:
+        <input type="checkbox"
+               name="Underline"
+               (change)="template.title_type_underline = $event.target.checked ? '1': '0'"
+        >
+        <div>Underline = {{template.title_type_underline}}</div>
+      </label>
+      <br>
 
       <label for="Type2.1">Text colour</label>
       <input [(ngModel)]="template.title_type_text_color" id="Type2.1" type="color">
@@ -137,9 +271,34 @@
     <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
   </select>
 
-  <div *ngFor="let item of temp2">
+  <!--<div *ngFor="let item of temp2">
     <input [(ngModel)]="template.h1_temp2" type="checkbox">{{item}}
-  </div>
+  </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.h1_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.h1_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.h1_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.h1_italic}}</div>
+    </label>
+    <br>
+    <label>Underline:
+      <input type="checkbox"
+             name="Underline"
+             (change)="template.h1_underline = $event.target.checked ? '1': '0'"
+      >
+      <div>Underline = {{template.h1_underline}}</div>
+    </label>
+    <br>
 
     <label for="c1.1">Text colour</label>
   <input [(ngModel)]="template.h1_text_color" id="c1.1" type="color">
@@ -163,9 +322,34 @@
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
-    <div *ngFor="let item of temp2">
+    <!--<div *ngFor="let item of temp2">
       <input [(ngModel)]="template.h2_temp2" type="checkbox">{{item}}
-    </div>
+    </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.h2_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.h2_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.h2_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.h2_italic}}</div>
+    </label>
+    <br>
+    <label>Underline:
+      <input type="checkbox"
+             name="Underline"
+             (change)="template.h2_underline = $event.target.checked ? '1': '0'"
+      >
+      <div>Underline = {{template.h2_underline}}</div>
+    </label>
+    <br>
 
     <label for="c2.1">Text colour</label>
     <input [(ngModel)]="template.h2_text_color" id="c2.1" type="color">
@@ -189,9 +373,34 @@
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
-    <div *ngFor="let item of temp2">
+    <!--<div *ngFor="let item of temp2">
       <input [(ngModel)]="template.h3_temp2" type="checkbox">{{item}}
-    </div>
+    </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.h3_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.h3_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.h3_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.h3_italic}}</div>
+    </label>
+    <br>
+    <label>Underline:
+      <input type="checkbox"
+             name="Underline"
+             (change)="template.h3_underline = $event.target.checked ? '1': '0'"
+      >
+      <div>Underline = {{template.h3_underline}}</div>
+    </label>
+    <br>
 
     <label for="c3.1">Text colour</label>
     <input [(ngModel)]="template.h3_text_color" id="c3.1" type="color">
@@ -215,9 +424,34 @@
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
-    <div *ngFor="let item of temp2">
+    <!--<div *ngFor="let item of temp2">
       <input [(ngModel)]="template.h4_temp2" type="checkbox">{{item}}
-    </div>
+    </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.h4_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.h4_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.h4_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.h4_italic}}</div>
+    </label>
+    <br>
+    <label>Underline:
+      <input type="checkbox"
+             name="Underline"
+             (change)="template.h4_underline = $event.target.checked ? '1': '0'"
+      >
+      <div>Underline = {{template.h4_underline}}</div>
+    </label>
+    <br>
 
     <label for="c4.1">Text colour</label>
     <input [(ngModel)]="template.h4_text_color" id="c4.1" type="color">
@@ -241,9 +475,34 @@
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
     </select>
 
-    <div *ngFor="let item of temp2">
+    <!--<div *ngFor="let item of temp2">
       <input [(ngModel)]="template.h5_temp2" type="checkbox">{{item}}
-    </div>
+    </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.h5_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.h5_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.h5_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.h5_italic}}</div>
+    </label>
+    <br>
+    <label>Underline:
+      <input type="checkbox"
+             name="Underline"
+             (change)="template.h5_underline = $event.target.checked ? '1': '0'"
+      >
+      <div>Underline = {{template.h5_underline}}</div>
+    </label>
+    <br>
 
     <label for="c5.1">Text colour</label>
     <input [(ngModel)]="template.h5_text_color" id="c5.1" type="color">
@@ -263,9 +522,26 @@
       <option *ngFor="let pow of fonsize" [value]="pow">{{pow}}</option>
     </select>
 
-    <div *ngFor="let item of temp2">
+    <!--<div *ngFor="let item of temp2">
       <input [(ngModel)]="template.table_temp2" type="checkbox">{{item}}
-    </div>
+    </div>-->
+
+    <label>Bold:
+      <input type="checkbox"
+             name="Bold"
+             (change)="template.table_bold = $event.target.checked ? '1': '0'"
+      >
+      <div>Bold = {{template.table_bold}}</div>
+    </label>
+    <br>
+    <label>Italic:
+      <input type="checkbox"
+             name="Italic"
+             (change)="template.table_italic = $event.target.checked ? '1': '0'"
+      >
+      <div>Italic = {{template.table_italic}}</div>
+    </label>
+    <br>
 
     <label for="Table5.1">Heading cell text colour</label>
     <input [(ngModel)]="template.table_heading_cell_text_color" id="Table5.1" type="color">
