@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent {
-
   info = {
     acc_name: 'Max',
     group_name: 'DEV',
