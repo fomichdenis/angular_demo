@@ -53,10 +53,10 @@ export class HeroFormComponent implements OnInit{
 
   template = {
     title_type: '1',//нет в коде
-    title_page: '0',//нет в коде
-    header: '0',//нет в коде
-    footer: '0', //нет в коде
-    numeration: '0', //нет в коде
+    title_page: '1',//нет в коде
+    header: '1',//нет в коде
+    footer: '1', //нет в коде
+    numeration: '1', //нет в коде
 
     title_alignment: 'right',
     title_name_font: 'Arial',
@@ -285,14 +285,14 @@ export class HeroFormComponent implements OnInit{
         this.template.table_font = response['table']['table_font'];
         console.log(response['table']['table_font']);
         console.log(this.template.table_font);
-        this.template.table_font_size = response['table']['table_font'];
-        this.template.table_temp2 = response['table']['table_font_size'];
+        this.template.table_font= response['table']['table_font'];
+        this.template.table_font_size = response['table']['table_font_size'];
         this.template.table_heading_cell_color = response['table']['table_heading_cell_color'];
         this.template.table_heading_cell_text_color = response['table']['table_heading_cell_text_color'];
         this.template.table_cell_border_color = response['table']['table_cell_border_color'];
         this.template.table_common_cell_color = response['table']['table_common_cell_color'];
-        this.template.table_bold = response['table']['bold'];
-        this.template.table_italic = response['table']['italic'];
+        this.template.table_bold = response['table']['table_bold'];
+        this.template.table_italic = response['table']['table_italic'];
 
         //this.template.global_temp1 = response['title_alignment'];
         this.template.interval = response['interval'];
