@@ -10,8 +10,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginPageComponent},
   { path: 'reg', component: RegistrationPageComponent},
-  { path: 'temp', component: HeroFormComponent},
-  { path: 'settings', component: AccountSettingsComponent},
+  { path: 'temp', component: HeroFormComponent, canActivate:[AuthGuardService]},
+  { path: 'settings', component: AccountSettingsComponent, canActivate:[AuthGuardService]},
   { path: 'templater', component: TemplaterComponent, canActivate:[AuthGuardService] }
 ];
 
