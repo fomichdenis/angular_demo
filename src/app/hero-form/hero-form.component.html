@@ -20,6 +20,7 @@
     <label>Title page :
       <input type="checkbox"
              name="Title page"
+             Change
              (change)="template.title_page = $event.target.checked ? '1': '0'"
              [checked]="template.title_page == '1'"
       >
@@ -81,24 +82,27 @@
       </div>-->
       <label>Bold:
         <input type="checkbox"
-               name="Bold"
+               name="Bold n"
                (change)="template.title_name_bold = $event.target.checked ? '1': '0'"
+               [checked]="template.title_name_bold == '1'"
         >
         <div>Bold = {{template.title_name_bold}}</div>
       </label>
       <br>
       <label>Italic:
         <input type="checkbox"
-               name="Italic"
+               name="Italic n"
                (change)="template.title_name_italic = $event.target.checked ? '1': '0'"
+               [checked]="template.title_name_italic == '1'"
         >
         <div>Italic = {{template.title_name_italic}}</div>
       </label>
       <br>
       <label>Underline:
         <input type="checkbox"
-               name="Underline"
+               name="Underline n"
                (change)="template.title_name_underline = $event.target.checked ? '1': '0'"
+               [checked]="template.title_name_underline == '1'"
         >
         <div>Underline = {{template.title_name_underline}}</div>
       </label>
@@ -129,6 +133,7 @@
         <input type="checkbox"
                name="Bold"
                (change)="template.title_organization_bold = $event.target.checked ? '1': '0'"
+               [checked]="template.title_organization_bold == '1'"
         >
         <div>Bold = {{template.title_organization_bold}}</div>
       </label>
@@ -137,6 +142,7 @@
         <input type="checkbox"
                name="Italic"
                (change)="template.title_organization_italic = $event.target.checked ? '1': '0'"
+               [checked]="template.title_organization_italic == '1'"
         >
         <div>Italic = {{template.title_organization_italic}}</div>
       </label>
@@ -145,6 +151,7 @@
         <input type="checkbox"
                name="Underline"
                (change)="template.title_organization_underline = $event.target.checked ? '1': '0'"
+               [checked]="template.title_organization_underline == '1'"
         >
         <div>Underline = {{template.title_organization_underline}}</div>
       </label>
@@ -176,6 +183,7 @@
         <input type="checkbox"
                name="Bold"
                (change)="template.title_description_bold = $event.target.checked ? '1': '0'"
+               [checked]="template.title_description_bold == '1'"
         >
         <div>Bold = {{template.title_description_bold}}</div>
       </label>
@@ -184,6 +192,7 @@
         <input type="checkbox"
                name="Italic"
                (change)="template.title_description_italic = $event.target.checked ? '1': '0'"
+               [checked]="template.title_description_italic == '1'"
         >
         <div>Italic = {{template.title_description_italic}}</div>
       </label>
@@ -192,6 +201,7 @@
         <input type="checkbox"
                name="Underline"
                (change)="template.title_description_underline = $event.target.checked ? '1': '0'"
+               [checked]="template.title_description_underline == '1'"
         >
         <div>Underline = {{template.title_description_underline}}</div>
       </label>
@@ -227,6 +237,7 @@
         <input type="checkbox"
                name="Bold"
                (change)="template.title_type_bold = $event.target.checked ? '1': '0'"
+               [checked]="template.title_type_bold == '1'"
         >
         <div>Bold = {{template.title_type_bold}}</div>
       </label>
@@ -235,6 +246,7 @@
         <input type="checkbox"
                name="Italic"
                (change)="template.title_type_italic = $event.target.checked ? '1': '0'"
+               [checked]="template.title_type_italic == '1'"
         >
         <div>Italic = {{template.title_type_italic}}</div>
       </label>
@@ -243,6 +255,7 @@
         <input type="checkbox"
                name="Underline"
                (change)="template.title_type_underline = $event.target.checked ? '1': '0'"
+               [checked]="template.title_type_underline == '1'"
         >
         <div>Underline = {{template.title_type_underline}}</div>
       </label>
@@ -279,6 +292,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.h1_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.h1_bold == '1'"
       >
       <div>Bold = {{template.h1_bold}}</div>
     </label>
@@ -287,6 +301,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.h1_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.h1_italic == '1'"
       >
       <div>Italic = {{template.h1_italic}}</div>
     </label>
@@ -295,6 +310,7 @@
       <input type="checkbox"
              name="Underline"
              (change)="template.h1_underline = $event.target.checked ? '1': '0'"
+             [checked]="template.h1_underline == '1'"
       >
       <div>Underline = {{template.h1_underline}}</div>
     </label>
@@ -330,6 +346,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.h2_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.h2_bold == '1'"
       >
       <div>Bold = {{template.h2_bold}}</div>
     </label>
@@ -338,6 +355,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.h2_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.h2_italic == '1'"
       >
       <div>Italic = {{template.h2_italic}}</div>
     </label>
@@ -346,6 +364,7 @@
       <input type="checkbox"
              name="Underline"
              (change)="template.h2_underline = $event.target.checked ? '1': '0'"
+             [checked]="template.h2_underline == '1'"
       >
       <div>Underline = {{template.h2_underline}}</div>
     </label>
@@ -381,6 +400,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.h3_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.h3_bold == '1'"
       >
       <div>Bold = {{template.h3_bold}}</div>
     </label>
@@ -389,6 +409,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.h3_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.h3_italic == '1'"
       >
       <div>Italic = {{template.h3_italic}}</div>
     </label>
@@ -397,6 +418,7 @@
       <input type="checkbox"
              name="Underline"
              (change)="template.h3_underline = $event.target.checked ? '1': '0'"
+             [checked]="template.h3_underline == '1'"
       >
       <div>Underline = {{template.h3_underline}}</div>
     </label>
@@ -432,6 +454,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.h4_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.h4_bold == '1'"
       >
       <div>Bold = {{template.h4_bold}}</div>
     </label>
@@ -440,6 +463,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.h4_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.h4_italic == '1'"
       >
       <div>Italic = {{template.h4_italic}}</div>
     </label>
@@ -448,6 +472,7 @@
       <input type="checkbox"
              name="Underline"
              (change)="template.h4_underline = $event.target.checked ? '1': '0'"
+             [checked]="template.h4_underline == '1'"
       >
       <div>Underline = {{template.h4_underline}}</div>
     </label>
@@ -483,6 +508,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.h5_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.h5_bold == '1'"
       >
       <div>Bold = {{template.h5_bold}}</div>
     </label>
@@ -491,6 +517,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.h5_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.h5_italic == '1'"
       >
       <div>Italic = {{template.h5_italic}}</div>
     </label>
@@ -499,6 +526,7 @@
       <input type="checkbox"
              name="Underline"
              (change)="template.h5_underline = $event.target.checked ? '1': '0'"
+             [checked]="template.h5_underline == '1'"
       >
       <div>Underline = {{template.h5_underline}}</div>
     </label>
@@ -530,6 +558,7 @@
       <input type="checkbox"
              name="Bold"
              (change)="template.table_bold = $event.target.checked ? '1': '0'"
+             [checked]="template.table_bold == '1'"
       >
       <div>Bold = {{template.table_bold}}</div>
     </label>
@@ -538,6 +567,7 @@
       <input type="checkbox"
              name="Italic"
              (change)="template.table_italic = $event.target.checked ? '1': '0'"
+             [checked]="template.table_italic == '1'"
       >
       <div>Italic = {{template.table_italic}}</div>
     </label>
