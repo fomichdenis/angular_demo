@@ -17,6 +17,13 @@
     <option *ngFor="let pow of interval" [value]="pow">{{pow}}</option>
   </select>
 
+    <label>Name: {{template.name}}
+    <app-text-field
+      [disabled]="false"
+      [(value)]="this.template.name">
+    </app-text-field>
+    </label><br>
+
     <label>Title page :
       <input type="checkbox"
              name="Title page"

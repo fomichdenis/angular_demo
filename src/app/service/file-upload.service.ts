@@ -16,9 +16,12 @@ export class FileUploadService {
       responseType: 'blob'
     });
   }
-  getTemplate(Id){
-    console.log(Id);
-    return this.http.post('http://localhost:8080/get_template_angular', {Id});
+  getTemplate(Name){
+    console.log(Name);
+    return this.http.post('http://localhost:8080/get_template_angular', {'Name': Name});
+  }
+  checkNameUniqueness(Name){
+    return this.http.post('http://localhost:8080/check_name_uniqueness_angular', {'Name': Name});
   }
   getTemplates(){
     return this.http.post<string[]>('http://localhost:8080/get_templates_angular', {});

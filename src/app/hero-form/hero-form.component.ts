@@ -47,11 +47,13 @@ export class HeroFormComponent implements OnInit{
 
   submitted = false;
 
+
   ngOnInit(): void {
     this.getTemplates();
   }
 
   template = {
+    name: '',
     title_type: '1',//нет в коде
     title_page: '1',//нет в коде
     header: '1',//нет в коде
@@ -182,9 +184,16 @@ export class HeroFormComponent implements OnInit{
 
   onSubmit() {
     console.log(this.template);
-    this.http.post(`http://localhost:8080/save_angular`, this.template).subscribe( response =>
-      this.getTemplates()
-    );
+    this.fileUploadService.checkNameUniqueness(this.template.name).subscribe( response => {
+      if (response['Success'] == 'YES') {
+        this.http.post(`http://localhost:8080/save_angular`, this.template).subscribe(response1 =>
+          this.getTemplates()
+        );
+      }
+      else{
+        console.log(response);
+      }
+    });
   }
 
   getTemplate() {
@@ -192,6 +201,8 @@ export class HeroFormComponent implements OnInit{
     this.fileUploadService.getTemplate(this.templateId).subscribe(response => {
         // console.log(response['headers']);
         console.log(response);
+        this.template.name = response['name'];
+
         this.template.h1_font = response['headers'][0]['font'];
         this.template.h1_font_size = response['headers'][0]['font_size'];
         this.template.h1_text_color = response['headers'][0]['text_color'];

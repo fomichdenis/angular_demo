@@ -52,6 +52,9 @@ export class AuthenticationService {
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     sessionStorage.removeItem('basicauth');
+    if (sessionStorage.getItem('manager') != null) {
+      sessionStorage.removeItem('manager');
+    }
     this.credentials.username = null;
     this.credentials.password = null;
     this.authenticated = false;
