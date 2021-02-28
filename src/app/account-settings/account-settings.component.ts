@@ -26,7 +26,7 @@ export class AccountSettingsComponent implements OnInit{
   ngOnInit(): void {
     this.role = 'user';
     if (sessionStorage.getItem('manager')){
-      this.role = 'manager';
+      this.role = sessionStorage.getItem('manager');
     }
     this.managerControlService.getGroupUsers().subscribe(Group => this.Group = Group);
     this.info.acc_name = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
