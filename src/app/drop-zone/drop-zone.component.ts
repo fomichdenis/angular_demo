@@ -3,7 +3,7 @@ import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
 import {FileUploadService} from "../service/file-upload.service";
 import {Observable} from "rxjs";
 import {forkJoin} from "rxjs";
-import {concat, concatMap} from "rxjs";
+import {concat} from "rxjs";
 
 @Component({
   selector: 'app-drop-zone',
