@@ -38,6 +38,11 @@ export class FileUploadService {
     console.log(data);
     return this.http.request(newRequest);
   }
+  merge(): Observable<Blob> {
+    return this.http.post('http://localhost:8080/merge_angular', {}, {
+      responseType: 'blob'
+    });
+  }
 
   getFiles(url): Observable<any> {
     return this.http.get(url);
