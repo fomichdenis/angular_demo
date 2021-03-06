@@ -333,4 +333,12 @@ export class HeroFormComponent implements OnInit{
     //   this.router.navigate(['/temp']);
     // });
   }
+  public show:boolean = false;
+  public buttonName:any = 'Download';
+  toggle() {
+    this.show = !this.show;
+    if(this.show)
+      this.buttonName = "Input Name";
+    else
+      this.buttonName = "Download";}
 }
