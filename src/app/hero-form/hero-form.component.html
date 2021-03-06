@@ -68,7 +68,7 @@
   </div>
 
 
-  <label for="Title">Title Page</label>
+
   <div class="TitleP" id="Title" *ngIf="selectedType == 'Title Page'">
 
     <select required [(ngModel)]="template.title_alignment" class="form-control" id="alignment_title" ngModel required>
@@ -278,7 +278,7 @@
 
   </div>
 
-  <label for="Hd1">Header 1</label>
+
   <div class="Header1" id="Hd1" *ngIf="selectedType == 'Header 1'">
     <select [(ngModel)]="template.h1_font" class="form-control" id="font1" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
@@ -332,7 +332,7 @@
   </div>
 
 
-  <label for="Hd2">Header 2</label>
+
   <div class="Header2" id="Hd2" *ngIf="selectedType == 'Header 2'">
     <select [(ngModel)]="template.h2_font" class="form-control" id="font2" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
@@ -386,7 +386,7 @@
   </div>
 
 
-  <label for="Hd3">Header 3</label>
+
   <div class="Header3" id="Hd3" *ngIf="selectedType == 'Header 3'">
     <select [(ngModel)]="template.h3_font" class="form-control" id="font3" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
@@ -440,7 +440,7 @@
   </div>
 
 
-  <label for="Hd4">Header 4</label>
+
   <div class="Header4" id="Hd4" *ngIf="selectedType == 'Header 4'">
     <select [(ngModel)]="template.h4_font" class="form-control" id="font4" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
@@ -494,7 +494,7 @@
   </div>
 
 
-  <label for="Hd5">Header 5</label>
+
   <div class="Header5" id="Hd5" *ngIf="selectedType == 'Header 5'">
     <select [(ngModel)]="template.h5_font" class="form-control" id="font5" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
