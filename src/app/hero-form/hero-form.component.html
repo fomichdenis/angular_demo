@@ -6,7 +6,7 @@
 
   <div class="globals">
   <label for="title">Template</label>
-  <select [(ngModel)]="template.header" name="cargo_name" class="form-control" id="Head">
+  <select [(ngModel)]="template.header"  (change)="onChange($event)" name="cargo_name" class="form-control" id="Head" >
     <option *ngFor="let pow of title" [value]="pow">{{pow}}</option>
   </select>
 
@@ -68,8 +68,8 @@
   </div>
 
 
-  <label for="Title">Title Page</label>
-  <div class="TitleP" id="Title">
+
+  <div class="TitleP" id="Title" *ngIf="selectedType == 'Title Page'">
 
     <select required [(ngModel)]="template.title_alignment" class="form-control" id="alignment_title" ngModel required>
       <option *ngFor="let pow of alignment" [value]="pow">{{pow}}</option>
@@ -278,8 +278,8 @@
 
   </div>
 
-  <label for="Hd1">Header 1</label>
-  <div class="Header1" id="Hd1">
+
+  <div class="Header1" id="Hd1" *ngIf="selectedType == 'Header 1'">
     <select [(ngModel)]="template.h1_font" class="form-control" id="font1" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
@@ -332,8 +332,8 @@
   </div>
 
 
-  <label for="Hd2">Header 2</label>
-  <div class="Header2" id="Hd2">
+
+  <div class="Header2" id="Hd2" *ngIf="selectedType == 'Header 2'">
     <select [(ngModel)]="template.h2_font" class="form-control" id="font2" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
@@ -386,8 +386,8 @@
   </div>
 
 
-  <label for="Hd3">Header 3</label>
-  <div class="Header3" id="Hd3">
+
+  <div class="Header3" id="Hd3" *ngIf="selectedType == 'Header 3'">
     <select [(ngModel)]="template.h3_font" class="form-control" id="font3" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
@@ -440,8 +440,8 @@
   </div>
 
 
-  <label for="Hd4">Header 4</label>
-  <div class="Header4" id="Hd4">
+
+  <div class="Header4" id="Hd4" *ngIf="selectedType == 'Header 4'">
     <select [(ngModel)]="template.h4_font" class="form-control" id="font4" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
@@ -494,8 +494,8 @@
   </div>
 
 
-  <label for="Hd5">Header 5</label>
-  <div class="Header5" id="Hd5">
+
+  <div class="Header5" id="Hd5" *ngIf="selectedType == 'Header 5'">
     <select [(ngModel)]="template.h5_font" class="form-control" id="font5" required>
       <option *ngFor="let pow of font" [value]="pow">{{pow}}</option>
     </select>
@@ -600,7 +600,20 @@
 
   <p></p>
 
-  <button id="submit1" (click)="download()">Download</button>
+
+  <button (click)="toggle()" id="bt">
+    {{buttonName}}
+  </button>
+
+  <ng-container *ngIf="show">
+    <div style="margin: 0 auto;text-align: left;">
+      <div>
+        <div><input id="tbname" name="yourname" /></div>
+      </div>
+      <button id="submit1" (click)="download()">Download</button>
+
+    </div>
+  </ng-container>
 
   <p></p>
   <div class="container">
