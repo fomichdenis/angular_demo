@@ -18,6 +18,10 @@ import {NgxDropzoneModule} from "ngx-dropzone";
 import { HeroFormComponent } from './hero-form/hero-form.component';
 import {RegistrationPageComponent} from './registration-page/registration-page.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
+import { ParagraphsComponent } from './paragraphs/paragraphs.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import { ParagraphComponent } from './paragraph/paragraph.component';
 
 
 
@@ -34,13 +38,17 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
     DropZoneComponent,
     HeroFormComponent,
     RegistrationPageComponent,
+    ParagraphsComponent,
+    ParagraphComponent,
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        NgxDropzoneModule
+        NgxDropzoneModule,
+        BrowserAnimationsModule,
+        DragDropModule
     ],
   providers: [
       {

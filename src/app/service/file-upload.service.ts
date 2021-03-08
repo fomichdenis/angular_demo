@@ -26,20 +26,14 @@ export class FileUploadService {
   getTemplates(){
     return this.http.post<string[]>('http://localhost:8080/get_templates_angular', {});
   }
-  upload(file: File, url): Observable<HttpEvent<any>> {
+  upload(file: File[], url): Observable<Blob> {
     const data: FormData = new FormData();
-    data.set('file', file);
+    for (let i = 0; i < file.length; i++) {
+      data.append('files', file[i], file[i].name);
+    }
     console.log('upload');
-    const newRequest = new HttpRequest('POST', url, data, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    console.log(data.get('file'));
     console.log(data);
-    return this.http.request(newRequest);
-  }
-  merge(): Observable<Blob> {
-    return this.http.post('http://localhost:8080/merge_angular', {}, {
+    return this.http.post(url, data, {
       responseType: 'blob'
     });
   }
