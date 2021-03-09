@@ -1,0 +1,10 @@
+<div *ngIf="paragraph">
+
+  <h2>{{paragraph.headingName | uppercase}} Heading name</h2>
+  <div><span>File name: </span>{{paragraph.fileName}}</div>
+  <div><span>Final name: </span>{{paragraph.finalName}}</div>
+  <div *ngFor="let subheading of paragraph.subheadingNames">
+    <span>Subheading name: </span>{{subheading}}
+  </div>
+
+</div>

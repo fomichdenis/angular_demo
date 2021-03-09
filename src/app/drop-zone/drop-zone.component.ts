@@ -53,34 +53,18 @@ export class DropZoneComponent implements OnInit {
   upload(){
     //console.log('Upload');
     let requests = [];
-    //for (let i = 0; i < this.files.length; i++){
-    for(let i = 0; i < this.files.length; i++) {
-      requests.push(this.uploadService.upload(this.files[i], 'http://localhost:8080/upload_angular'));
-        // .subscribe(res => {
-        //   console.log(res);
-        // });
-    }
-    // concat(requests).subscribe( res => {
-    //   this.files = [];
-    //   this.uploadService.merge().subscribe(blob => {
-    //     var b: any = blob;
-    //     b.lastModifiedDate = new Date();
-    //     b.name = "Res.docx";
-    //     this.files.push(<File>blob);
-    //     this.fileReadyToDownload = true;
-    //   });
-    // });
-    //concatMap()
-    forkJoin(requests).subscribe( res => {
-      this.files = [];
-      this.uploadService.merge().subscribe(blob => {
+    var t0 = performance.now()
+    this.uploadService.upload(this.files, 'http://localhost:8080/upload_angular').
+      subscribe(blob => {
+        this.files = [];
         var b: any = blob;
         b.lastModifiedDate = new Date();
         b.name = "Res.docx";
         this.files.push(<File>blob);
         this.fileReadyToDownload = true;
+        var t1 = performance.now()
+        console.log("Call to upload and download took " + (t1 - t0) + " milliseconds.")
       });
-    });
   }
   download(){
     if (this.fileReadyToDownload){
