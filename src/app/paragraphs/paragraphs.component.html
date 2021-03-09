@@ -7,23 +7,11 @@
       [cdkDropListData]="unmatchedParagraphs"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of unmatchedParagraphs" cdkDrag>{{item.headingName}}</div>
+      <div class="example-box" *ngFor="let item of unmatchedParagraphs" cdkDrag (click)="onSelect(item)">
+        {{item.headingName}}
+      </div>
     </div>
   </div>
-
-<!--  <div class="example-container">-->
-<!--    <h4>Proposed paragraphs</h4>-->
-<!--    <div *ngFor="let match of uParagraphs; index as i">-->
-<!--      <h4>{{match.headingName}}</h4>-->
-<!--      <div-->
-<!--        cdkDropList-->
-<!--        [cdkDropListData]=uParagraphs-->
-<!--        class="example-list"-->
-<!--        (cdkDropListDropped)="drop($event)">-->
-<!--        <div class="example-box" *ngFor="let item of match" cdkDrag>{{item}}</div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
 
   <div *ngFor="let paragraph of proposedParagraphs">
     <div class="example-container">
@@ -36,9 +24,12 @@
         [cdkDropListData]="paragraph"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of paragraph" cdkDrag>{{item.headingName}}</div>
+        <div class="example-box" *ngFor="let item of paragraph" cdkDrag cdkDrag (click)="onSelect(item)">{{item.headingName}}</div>
       </div>
     </div>
   </div>
 </div>
 
+<app-paragraph-detail [paragraph]="selectedParagraph"></app-paragraph-detail>
+<p></p>
+<button id="submit2" (click)="addParagraph()">Add paragraph</button>

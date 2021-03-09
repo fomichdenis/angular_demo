@@ -16,14 +16,19 @@ export class ParagraphsComponent implements OnInit {
   ];
   proposedParagraphs: Paragraph[][];
   unmatchedParagraphs: Paragraph[];
-
+  selectedParagraph: Paragraph;
   ngOnInit(): void{
-    this.proposedParagraphs = [[{ headingName: 'History', finalName: 'History', subheadingNames: ['Whales'], fileName: 'test1.doc'},
+    this.proposedParagraphs = [[{ headingName: 'History', finalName: 'History', subheadingNames: ['Whales', 'Scotland'], fileName: 'test1.doc'},
       { headingName: 'General', finalName: 'General', subheadingNames: ['1688'], fileName: 'test2.doc'}], [{ headingName: 'Test', finalName: 'Test', subheadingNames: ['Test'], fileName: 'test3.doc'}]];
     this.unmatchedParagraphs = [{ headingName: 'Tester', finalName: 'History', subheadingNames: ['Whales'], fileName: 'test1.doc'}];
   }
 
-  addParagraphs1() {
+  addParagraph() {
+    this.proposedParagraphs.push([]);
+  }
+
+  onSelect(paragraph: Paragraph): void{
+    this.selectedParagraph = paragraph;
   }
 
   // drop(event: CdkDragDrop<string[]>) {

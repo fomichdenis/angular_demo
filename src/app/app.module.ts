@@ -22,6 +22,7 @@ import { ParagraphsComponent } from './paragraphs/paragraphs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { ParagraphComponent } from './paragraph/paragraph.component';
+import { ParagraphDetailComponent } from './paragraph-detail/paragraph-detail.component';
 
 
 
@@ -40,6 +41,7 @@ import { ParagraphComponent } from './paragraph/paragraph.component';
     RegistrationPageComponent,
     ParagraphsComponent,
     ParagraphComponent,
+    ParagraphDetailComponent,
   ],
     imports: [
         BrowserModule,

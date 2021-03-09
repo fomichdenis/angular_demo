@@ -53,6 +53,7 @@ export class DropZoneComponent implements OnInit {
   upload(){
     //console.log('Upload');
     let requests = [];
+    var t0 = performance.now()
     this.uploadService.upload(this.files, 'http://localhost:8080/upload_angular').
       subscribe(blob => {
         this.files = [];
@@ -61,6 +62,8 @@ export class DropZoneComponent implements OnInit {
         b.name = "Res.docx";
         this.files.push(<File>blob);
         this.fileReadyToDownload = true;
+        var t1 = performance.now()
+        console.log("Call to upload and download took " + (t1 - t0) + " milliseconds.")
       });
   }
   download(){
