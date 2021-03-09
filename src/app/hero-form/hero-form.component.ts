@@ -12,6 +12,7 @@ import {FileUploadService} from "../service/file-upload.service";
   styleUrls: ['./hero-form.component.css']
 })
 export class HeroFormComponent implements OnInit{
+  private replytype: any;
 
   constructor(
       private tempService: TempService,
@@ -333,4 +334,18 @@ export class HeroFormComponent implements OnInit{
     //   this.router.navigate(['/temp']);
     // });
   }
+
+  public show:boolean = false;
+  public buttonName:any = 'Download';
+  public selectedType:any = 'opentype';
+  onChange(event) {
+    this.selectedType = event.target.value;
+  }
+  toggle() {
+    this.show = !this.show;
+    if(this.show)
+      this.buttonName = "Input Name";
+    else
+      this.buttonName = "Download";}
+
 }
