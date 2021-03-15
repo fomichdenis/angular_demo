@@ -1,4 +1,11 @@
-<app-drop-zone></app-drop-zone>
+<app-drop-zone [files] = "files"></app-drop-zone>
+
+<p></p>
+<button id="uploadStyle" (click)="uploadStyle()">Upload style</button>
+<div *ngIf="readyToStyle">
+<button id="styleFiles" (click)="styleFiles()">Style files</button>
+<p></p>
+</div>
 <div class="form-group">
 
 

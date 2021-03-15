@@ -26,7 +26,7 @@ export class FileUploadService {
   getTemplates(){
     return this.http.post<string[]>('http://localhost:8080/get_templates_angular', {});
   }
-  upload(file: File[], url): Observable<Blob> {
+  upload(file: File[], url) {
     const data: FormData = new FormData();
     for (let i = 0; i < file.length; i++) {
       data.append('files', file[i], file[i].name);
@@ -34,10 +34,17 @@ export class FileUploadService {
     console.log('upload');
     console.log(data);
     return this.http.post(url, data, {
-      responseType: 'blob'
+      responseType: 'json'
     });
   }
 
+  uploadSingleFile(file: File){
+    const data: FormData = new FormData();
+    data.append('file', file);
+    return this.http.post('http://localhost:8080/style_file_angular', data, {
+      responseType: 'blob'
+    });
+  }
   getFiles(url): Observable<any> {
     return this.http.get(url);
   }

@@ -48,6 +48,9 @@ export class HeroFormComponent implements OnInit{
 
   submitted = false;
 
+  files: File[] = [];
+
+  readyToStyle: boolean = false;
 
   ngOnInit(): void {
     this.getTemplates();
@@ -61,7 +64,7 @@ export class HeroFormComponent implements OnInit{
     footer: '1', //нет в коде
     numeration: '1', //нет в коде
 
-    title_alignment: 'right',
+    title_alignment: 'RIGHT',
     title_name_font: 'Arial',
     title_name_font_size: '11',
     title_name_temp2: '',
@@ -95,7 +98,7 @@ export class HeroFormComponent implements OnInit{
     title_type_temp2: '',
     title_type_text_color: '#000000',
     title_type_text_highlight_color: '#000000',
-    title_type_alignment: 'left',
+    title_type_alignment: 'LEFT',
     title_type_bold: '0',
     title_type_italic: '0',
     title_type_underline: '0', //нет в коде bold, italic, underline
@@ -105,7 +108,7 @@ export class HeroFormComponent implements OnInit{
     h1_temp2: '',
     h1_text_color: '#000000',
     h1_text_highlight_color: '#000000',
-    h1_alignment: 'left',
+    h1_alignment: 'LEFT',
     h1_bold: '0',
     h1_italic: '0',
     h1_underline: '0', //нет в коде bold, italic, underline
@@ -115,7 +118,7 @@ export class HeroFormComponent implements OnInit{
     h2_temp2: '',
     h2_text_color: '#000000',
     h2_text_highlight_color: '#000000',
-    h2_alignment: 'left',
+    h2_alignment: 'LEFT',
     h2_bold: '0',
     h2_italic: '0',
     h2_underline: '0', //нет в коде bold, italic, underline
@@ -125,7 +128,7 @@ export class HeroFormComponent implements OnInit{
     h3_temp2: '',
     h3_text_color: '#000000',
     h3_text_highlight_color: '#000000',
-    h3_alignment: 'left',
+    h3_alignment: 'LEFT',
     h3_bold: '0',
     h3_italic: '0',
     h3_underline: '0', //нет в коде bold, italic, underline
@@ -135,7 +138,7 @@ export class HeroFormComponent implements OnInit{
     h4_temp2: '',
     h4_text_color: '#000000',
     h4_text_highlight_color: '#000000',
-    h4_alignment: 'left',
+    h4_alignment: 'LEFT',
     h4_bold: '0',
     h4_italic: '0',
     h4_underline: '0', //нет в коде bold, italic, underline
@@ -145,7 +148,7 @@ export class HeroFormComponent implements OnInit{
     h5_temp2: '',
     h5_text_color: '#000000',
     h5_text_highlight_color: '#000000',
-    h5_alignment: 'left',
+    h5_alignment: 'LEFT',
     h5_bold: '0',
     h5_italic: '0',
     h5_underline: '0', //нет в коде bold, italic, underline
@@ -165,6 +168,25 @@ export class HeroFormComponent implements OnInit{
     fields: 'average',
   };
 
+  uploadStyle() {
+    this.http.post(`http://localhost:8080/get_style_angular`, this.template)
+      .subscribe( response =>
+        this.readyToStyle = true
+    );
+  }
+
+  styleFiles(){
+    for (let file of this.files){
+      this.fileUploadService.uploadSingleFile(file).subscribe( blob => {
+        const a = document.createElement('a')
+        const objectUrl = URL.createObjectURL(blob)
+        a.href = objectUrl
+        a.download = file.name;
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      });
+    }
+  }
   download() {
     console.log('Download');
     this.fileUploadService.download('http://localhost:8080/download_angular', this.template)
@@ -182,6 +204,8 @@ export class HeroFormComponent implements OnInit{
     // });
     this.submitted = true;
   }
+
+
 
   onSubmit() {
     console.log(this.template);
