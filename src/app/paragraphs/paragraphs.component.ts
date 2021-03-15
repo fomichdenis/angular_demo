@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CdkDragMove, DragDropModule} from '@angular/cdk/drag-drop';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {Paragraph} from '../paragraph';
@@ -9,26 +9,29 @@ import {Paragraph} from '../paragraph';
   styleUrls: ['./paragraphs.component.css']
 })
 export class ParagraphsComponent implements OnInit {
+
+  @Input() proposedHeadings: Paragraph[][];
+  @Input() unmatchedHeadings: Paragraph[];
   imports: [
     DragDropModule,
     CdkDragDrop<string>,
     CdkDragMove
   ];
-  proposedParagraphs: Paragraph[][];
-  unmatchedParagraphs: Paragraph[];
-  selectedParagraph: Paragraph;
+  //proposedHeadings: Paragraph[][];
+  //unmatchedHeadings: Paragraph[];
+  selectedHeadings: Paragraph;
   ngOnInit(): void{
-    this.proposedParagraphs = [[{ headingName: 'History', finalName: 'History', subheadingNames: ['Whales', 'Scotland'], fileName: 'test1.doc'},
-      { headingName: 'General', finalName: 'General', subheadingNames: ['1688'], fileName: 'test2.doc'}], [{ headingName: 'Test', finalName: 'Test', subheadingNames: ['Test'], fileName: 'test3.doc'}]];
-    this.unmatchedParagraphs = [{ headingName: 'Tester', finalName: 'History', subheadingNames: ['Whales'], fileName: 'test1.doc'}];
+    // this.proposedHeadings = [[{ headingName: 'History', finalName: 'History', subheadingNames: [{headingName: '1688', fileName: '1'}], fileName: 'test1.doc'},
+    //   { headingName: 'General', finalName: 'General', subheadingNames: [{headingName: '1688', fileName: '1'}], fileName: 'test2.doc'}], [{ headingName: 'Test', finalName: 'Test', subheadingNames: [{headingName: '1688', fileName: '1'}], fileName: 'test3.doc'}]];
+    // this.unmatchedHeadings = [{ headingName: 'Tester', finalName: 'History', subheadingNames: [{headingName: '1688', fileName: '1'}], fileName: 'test1.doc'}];
   }
 
   addParagraph() {
-    this.proposedParagraphs.push([]);
+    this.proposedHeadings.push([]);
   }
 
   onSelect(paragraph: Paragraph): void{
-    this.selectedParagraph = paragraph;
+    this.selectedHeadings = paragraph;
   }
 
   // drop(event: CdkDragDrop<string[]>) {
@@ -51,4 +54,25 @@ export class ParagraphsComponent implements OnInit {
         event.currentIndex);
     }
   }
+
+
+  dropParagraph(event: CdkDragDrop<Paragraph[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else if (event.container.data.find(x =>
+      x.headingName != event.previousContainer.data[event.previousIndex].headingName
+      && x.fileName == event.previousContainer.data[event.previousIndex].fileName) == undefined) {
+        if (event.currentIndex > 0) {
+          event.previousContainer.data[event.previousIndex].finalName = event.container.data[event.currentIndex - 1].finalName;
+        } else if (event.container.data.length > 1) {
+          event.previousContainer.data[event.previousIndex].finalName = event.container.data[event.currentIndex + 1].finalName;
+        }
+        transferArrayItem(event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex);
+      }
+  }
+
+
 }

@@ -3,8 +3,15 @@
   <h2>{{paragraph.headingName | uppercase}} Heading name</h2>
   <div><span>File name: </span>{{paragraph.fileName}}</div>
   <div><span>Final name: </span>{{paragraph.finalName}}</div>
-  <div *ngFor="let subheading of paragraph.subheadingNames">
-    <span>Subheading name: </span>{{subheading}}
+  <app-text-field
+    [disabled]="false"
+    [(value)]="this.paragraph.finalName"
+    [type]="'text'"
+    [label]="'Final name'"
+    (keyup.enter)="ChangeFinalName()">
+  </app-text-field>
+  <!--<div><span>subNames size: {{paragraph.subheadingNames.length}}</span></div>-->
+  <div *ngFor="let subheading of paragraph.subheadingsNames">
+    <div><span>Subheading name: {{subheading}}</span></div>
   </div>
-
 </div>

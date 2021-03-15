@@ -4,16 +4,16 @@
 
     <div
       cdkDropList
-      [cdkDropListData]="unmatchedParagraphs"
+      [cdkDropListData]="unmatchedHeadings"
       class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of unmatchedParagraphs" cdkDrag (click)="onSelect(item)">
+      (cdkDropListDropped)="dropParagraph($event)">
+      <div class="example-box" *ngFor="let item of unmatchedHeadings" cdkDrag (click)="onSelect(item)">
         {{item.headingName}}
       </div>
     </div>
   </div>
 
-  <div *ngFor="let paragraph of proposedParagraphs">
+  <ng-container *ngFor="let paragraph of proposedHeadings">
     <div class="example-container">
       <div *ngIf="paragraph[0]">
         <h4>{{paragraph[0].headingName}}</h4>
@@ -23,13 +23,13 @@
         #uParagraphs = "cdkDropList"
         [cdkDropListData]="paragraph"
         class="example-list"
-        (cdkDropListDropped)="drop($event)">
+        (cdkDropListDropped)="dropParagraph($event)">
         <div class="example-box" *ngFor="let item of paragraph" cdkDrag cdkDrag (click)="onSelect(item)">{{item.headingName}}</div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>
 
-<app-paragraph-detail [paragraph]="selectedParagraph"></app-paragraph-detail>
+<app-paragraph-detail [paragraph]="selectedHeadings"></app-paragraph-detail>
 <p></p>
 <button id="submit2" (click)="addParagraph()">Add paragraph</button>

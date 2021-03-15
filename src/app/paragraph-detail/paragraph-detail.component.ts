@@ -9,9 +9,10 @@ import {Paragraph} from "../paragraph";
 export class ParagraphDetailComponent implements OnInit {
   @Input() paragraph: Paragraph;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
-
+  ChangeFinalName(){
+  }
 }

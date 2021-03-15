@@ -21,9 +21,8 @@ import {AccountSettingsComponent} from './account-settings/account-settings.comp
 import { ParagraphsComponent } from './paragraphs/paragraphs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from "@angular/cdk/drag-drop";
-import { ParagraphComponent } from './paragraph/paragraph.component';
+import { Paragraph } from './paragraph';
 import { ParagraphDetailComponent } from './paragraph-detail/paragraph-detail.component';
-
 
 
 @NgModule({
@@ -40,8 +39,7 @@ import { ParagraphDetailComponent } from './paragraph-detail/paragraph-detail.co
     HeroFormComponent,
     RegistrationPageComponent,
     ParagraphsComponent,
-    ParagraphComponent,
-    ParagraphDetailComponent,
+    ParagraphDetailComponent
   ],
     imports: [
         BrowserModule,
