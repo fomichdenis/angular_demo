@@ -51,6 +51,9 @@ export class DropZoneComponent implements OnInit, OnDestroy {
     this.dataService.styleSubject.subscribe(s => {
       this.readyToStyle = s;
     });
+    this.dataService.fileSubject.subscribe( f => {
+      this.files = f;
+    });
   }
   ngOnDestroy() {
     // this.unmatchedHeadersSubscription.unsubscribe();
@@ -140,6 +143,7 @@ export class DropZoneComponent implements OnInit, OnDestroy {
         //this.subscriptionUnmatchedHeaders = of(this.unmatchedHeadings);
         this.dataService.nextUHeadings(this.unmatchedHeadings);
         this.dataService.nextPHeadings(this.proposedHeadings);
+        this.dataService.nextFile(this.files);
         //this.dataService.proposedHeadings = this.proposedHeadings;
         this.fileReadyToDownload = true;
         //this.router.navigate(['/header_combine']);
@@ -189,12 +193,12 @@ export class DropZoneComponent implements OnInit, OnDestroy {
           URL.revokeObjectURL(objectUrl);
         }
       );
-      this.unmatchedHeadings = [];
-      this.proposedHeadings = [];
-      this.files = [];
+      // this.unmatchedHeadings = [];
+      // this.proposedHeadings = [];
+      // this.files = [];
       this.dataService.nextUHeadings(this.unmatchedHeadings);
       this.dataService.nextPHeadings(this.proposedHeadings);
-      this.router.navigate(['/templater']);
+      // this.router.navigate(['/templater']);
     }
     // if (this.fileReadyToDownload){
     //   const a = document.createElement('a')
