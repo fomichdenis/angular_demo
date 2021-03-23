@@ -1,11 +1,7 @@
-<app-drop-zone [files] = "files"></app-drop-zone>
+<app-drop-zone [files] = "files" [mode]="'download'"></app-drop-zone>
 
 <p></p>
 <button id="uploadStyle" (click)="uploadStyle()">Upload style</button>
-<div *ngIf="readyToStyle">
-<button id="styleFiles" (click)="styleFiles()">Style files</button>
-<p></p>
-</div>
 <div class="form-group">
 
 
@@ -603,7 +599,7 @@
 
   </div>
 
-  <button id="submit0" (click)="onSubmit()">Submit</button>
+  <button id="submit0" (click)="onSubmit()">Save template on server</button>
 
   <p></p>
 
@@ -617,7 +613,7 @@
       <div>
         <div><input id="tbname" name="yourname" /></div>
       </div>
-      <button id="submit1" (click)="download()">Download</button>
+      <button id="submit1" (click)="download()">Save template as docx</button>
 
     </div>
   </ng-container>
@@ -628,16 +624,13 @@
       <app-text-field
         [disabled]="false"
         [(value)]="this.templateId"
-        [label]="'templateId'"
+        [label]="'template name'"
         (keyup.enter)="getTemplate()">
       </app-text-field>
     </div>
   </div>
 
   <button id="submit2" (click)="getTemplate()">Get template</button>
-  <p></p>
-
-  <button id="submit5" (click)="getTemplates()">Get templates</button>
   <p></p>
 
   <div *ngIf="templates">

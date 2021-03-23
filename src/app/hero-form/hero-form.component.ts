@@ -1,17 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RegistrationService} from "../service/registration.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {TempService} from "../service/temp.service";
 import {ManagerControlService} from "../service/manager-control.service";
 import {FileUploadService} from "../service/file-upload.service";
+import { Subscription } from 'rxjs';
+import {Paragraph} from "../paragraph";
+import {DataService} from "../service/data.service";
 
 @Component({
   selector: 'app-hero-form',
   templateUrl: './hero-form.component.html',
   styleUrls: ['./hero-form.component.css']
 })
-export class HeroFormComponent implements OnInit{
+export class HeroFormComponent implements OnInit, OnDestroy{
   private replytype: any;
 
   constructor(
@@ -19,7 +22,8 @@ export class HeroFormComponent implements OnInit{
       private router: Router,
       private fileUploadService: FileUploadService,
       private http: HttpClient,
-      private managerControlService: ManagerControlService
+      private managerControlService: ManagerControlService,
+      private dataService: DataService
   ) {}
 
   templates = [];
@@ -52,8 +56,16 @@ export class HeroFormComponent implements OnInit{
 
   readyToStyle: boolean = false;
 
+
   ngOnInit(): void {
     this.getTemplates();
+    this.dataService.styleSubject.subscribe(s => {
+      this.readyToStyle = s;
+    });
+  }
+
+  ngOnDestroy(): void {
+    //this.styleSubscription.unsubscribe();
   }
 
   template = {
@@ -170,23 +182,22 @@ export class HeroFormComponent implements OnInit{
 
   uploadStyle() {
     this.http.post(`http://localhost:8080/get_style_angular`, this.template)
-      .subscribe( response =>
-        this.readyToStyle = true
+      .subscribe( response => {
+        this.readyToStyle = true;
+        this.dataService.styleSubject.next(this.readyToStyle);
+      }
     );
   }
 
-  styleFiles(){
-    for (let file of this.files){
-      this.fileUploadService.uploadSingleFile(file).subscribe( blob => {
-        const a = document.createElement('a')
-        const objectUrl = URL.createObjectURL(blob)
-        a.href = objectUrl
-        a.download = file.name;
-        a.click();
-        URL.revokeObjectURL(objectUrl);
-      });
-    }
-  }
+  // deleteStyle() {
+  //   this.http.post(`http://localhost:8080/delete_style_angular`, {})
+  //     .subscribe( response => {
+  //         this.readyToStyle = false;
+  //         this.dataService.styleSubject.next(this.readyToStyle);
+  //       }
+  //     );
+  // }
+
   download() {
     console.log('Download');
     this.fileUploadService.download('http://localhost:8080/download_angular', this.template)
@@ -360,7 +371,7 @@ export class HeroFormComponent implements OnInit{
   }
 
   public show:boolean = false;
-  public buttonName:any = 'Download';
+  public buttonName:any = 'Save as docx';
   public selectedType:any = 'opentype';
   onChange(event) {
     this.selectedType = event.target.value;
@@ -370,6 +381,6 @@ export class HeroFormComponent implements OnInit{
     if(this.show)
       this.buttonName = "Input Name";
     else
-      this.buttonName = "Download";}
+      this.buttonName = "Save template as docx";}
 
 }

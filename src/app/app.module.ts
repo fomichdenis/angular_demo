@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { Paragraph } from './paragraph';
 import { ParagraphDetailComponent } from './paragraph-detail/paragraph-detail.component';
+import { HeaderCombineComponent } from './header-combine/header-combine.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ParagraphDetailComponent } from './paragraph-detail/paragraph-detail.co
     HeroFormComponent,
     RegistrationPageComponent,
     ParagraphsComponent,
-    ParagraphDetailComponent
+    ParagraphDetailComponent,
+    HeaderCombineComponent
   ],
     imports: [
         BrowserModule,

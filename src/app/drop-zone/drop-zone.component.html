@@ -1,13 +1,29 @@
-<ngx-dropzone class="drop-zone" (change)="onSelect($event)">
+<div *ngIf="mode=='download'">
+  <ngx-dropzone class="drop-zone" (change)="onSelect($event)">
 
-  <ngx-dropzone-label class="drop-zone-label" >Drop it, baby!</ngx-dropzone-label>
-  <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
-    <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
-  </ngx-dropzone-preview>
-</ngx-dropzone>
+    <ngx-dropzone-label class="drop-zone-label" >Drop it, baby!</ngx-dropzone-label>
+    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }}</ngx-dropzone-label>
+    </ngx-dropzone-preview>
+  </ngx-dropzone>
+  <button id="upload" (click)="upload()">Upload</button>
+  <div *ngIf="proposedHeadings.length">
+  <button id="combine headers" (click)="combineHeaders()">Combine headers</button>
+  </div>
+<!--  <button id="download1" (click)="download()">Download</button>-->
+</div>
 
-<button id="upload" (click)="upload()">Upload</button>
-<button id="download" (click)="download()">Download</button>
+<div *ngIf="readyToStyle">
+  <h1>Style is set</h1>
+  <button id="delete style" (click)="deleteStyle()">Delete style</button>
+  <p></p>
+</div>
 
-<app-paragraphs [proposedHeadings] = "proposedHeadings" [unmatchedHeadings]="unmatchedHeadings"></app-paragraphs>
-
+<div *ngIf="mode=='combine'">
+  <button id="backToTemp" (click)="backToTemp()">Return to template creation</button>
+  <p></p>
+  <button id="download2" (click)="download()">Download</button>
+  <div *ngIf="proposedHeadings.length">
+    <app-paragraphs [proposedHeadings] = "proposedHeadings" [unmatchedHeadings]="unmatchedHeadings"></app-paragraphs>
+  </div>
+</div>
