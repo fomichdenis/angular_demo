@@ -21,6 +21,14 @@ export class TopBarComponent implements OnInit {
     console.log('menu ->' + this.isLoggedIn);
   }
 
+  temp(){
+    this.router.navigate(['/templater']);
+  }
+
+  settings(){
+    this.router.navigate(['/settings']);
+  }
+
   logout() {
     this.authenticationService.logout();
     this.isLoggedIn = this.authenticationService.isUserLoggedIn();

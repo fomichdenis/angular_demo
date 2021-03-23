@@ -7,14 +7,16 @@ import {RegistrationPageComponent} from './registration-page/registration-page.c
 import {HeroFormComponent} from './hero-form/hero-form.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {ParagraphsComponent} from "./paragraphs/paragraphs.component";
+import {HeaderCombineComponent} from "./header-combine/header-combine.component";
+import {DropZoneComponent} from "./drop-zone/drop-zone.component";
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login'},
   { path: 'login', component: LoginPageComponent},
   { path: 'reg', component: RegistrationPageComponent},
-  { path: 'temp', component: HeroFormComponent/*, canActivate:[AuthGuardService]*/},
   { path: 'settings', component: AccountSettingsComponent/*, canActivate:[AuthGuardService]*/},
-  { path: 'templater', component: TemplaterComponent/*, canActivate:[AuthGuardService]*/ },
-  { path: 'paragraphs', component: ParagraphsComponent}
+  { path: 'templater', component: HeroFormComponent/*, canActivate:[AuthGuardService]*/ },
+  { path: 'paragraphs', component: ParagraphsComponent},
+  { path: 'header_combine', component: HeaderCombineComponent}
 ];
 
 // configures NgModule imports and exports

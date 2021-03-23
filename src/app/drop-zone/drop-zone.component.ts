@@ -1,27 +1,30 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient, HttpEventType, HttpResponse} from "@angular/common/http";
 import {FileUploadService} from "../service/file-upload.service";
-import {Observable} from "rxjs";
+import {Observable, of, Subscribable, Subscription} from "rxjs";
 import {forkJoin} from "rxjs";
 import {concat} from "rxjs";
 import {Paragraph} from "../paragraph";
 import {HeadingsCorrection} from "../headings-correction";
+import {DataService} from "../service/data.service";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-drop-zone',
   templateUrl: './drop-zone.component.html',
   styleUrls: ['./drop-zone.component.css']
 })
-export class DropZoneComponent implements OnInit {
+export class DropZoneComponent implements OnInit, OnDestroy {
 
   @Input() files: File[];
-  fileReadyToDownload: boolean = false;
+  @Input() mode: string = 'combine'; //combine or download
+  @Input() fileReadyToDownload: boolean = false;
   proposedHeadings: Paragraph[][];
   unmatchedHeadings: Paragraph[];
   headingsToSend: HeadingsCorrection[] = [];
+  readyToStyle: boolean = false;
+  public subscriptionUnmatchedHeaders: Observable<Paragraph[]>;
 
-  ngOnInit(): void {
-  }
   // title = 'File-Upload-Save';
   // selectedFiles: FileList;
   // currentFileUpload: File;
@@ -31,9 +34,28 @@ export class DropZoneComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private uploadService: FileUploadService
-  ) {}
+    private uploadService: FileUploadService,
+    private dataService: DataService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+  }
 
+  ngOnInit(): void {
+    this.dataService.uHeadingsSubject.subscribe(u => {
+      this.unmatchedHeadings = u;
+    });
+    this.dataService.pHeadingsSubject.subscribe(p => {
+      this.proposedHeadings = p;
+    });
+    this.dataService.styleSubject.subscribe(s => {
+      this.readyToStyle = s;
+    });
+  }
+  ngOnDestroy() {
+    // this.unmatchedHeadersSubscription.unsubscribe();
+    // this.matchedHeadersSubscription.unsubscribe();
+  }
   onSelect(event) {
     console.log(event);
     this.files.push(...event.addedFiles);
@@ -55,10 +77,27 @@ export class DropZoneComponent implements OnInit {
     this.fileReadyToDownload = false;
   }
 
+  deleteStyle() {
+    this.http.post(`http://localhost:8080/delete_style_angular`, {})
+      .subscribe( response => {
+          this.readyToStyle = false;
+          this.dataService.styleSubject.next(this.readyToStyle);
+        }
+      );
+  }
+
+  combineHeaders(){
+    this.router.navigate(['/header_combine']);
+  }
+  backToTemp(){
+    this.router.navigate(['/templater']);
+  }
   upload(){
     //console.log('Upload');
     let requests = [];
-    var t0 = performance.now()
+    var t0 = performance.now();
+    this.unmatchedHeadings = [];
+    this.proposedHeadings = [];
     this.uploadService.upload(this.files, 'http://localhost:8080/upload_angular').
       subscribe(blob => {
         console.log(blob);
@@ -92,7 +131,18 @@ export class DropZoneComponent implements OnInit {
         }
         console.log(this.unmatchedHeadings);
         console.log(this.proposedHeadings);
+        // this.unmatchedHeadingContainerService.changeMessage(this.unmatchedHeadings);
+        // this.matchedHeadingContainerService.changeMessage(this.proposedHeadings);
+        // this.unmatchedHeadingContainerService.currentMessage.subscribe(
+        //   message => console.log(message.length)
+        // );
+        //this.dataService.unmatchedHeadings = this.unmatchedHeadings;
+        //this.subscriptionUnmatchedHeaders = of(this.unmatchedHeadings);
+        this.dataService.nextUHeadings(this.unmatchedHeadings);
+        this.dataService.nextPHeadings(this.proposedHeadings);
+        //this.dataService.proposedHeadings = this.proposedHeadings;
         this.fileReadyToDownload = true;
+        //this.router.navigate(['/header_combine']);
         // this.files = [];
         // var b: any = blob;
         // b.lastModifiedDate = new Date();
@@ -139,6 +189,12 @@ export class DropZoneComponent implements OnInit {
           URL.revokeObjectURL(objectUrl);
         }
       );
+      this.unmatchedHeadings = [];
+      this.proposedHeadings = [];
+      this.files = [];
+      this.dataService.nextUHeadings(this.unmatchedHeadings);
+      this.dataService.nextPHeadings(this.proposedHeadings);
+      this.router.navigate(['/templater']);
     }
     // if (this.fileReadyToDownload){
     //   const a = document.createElement('a')
