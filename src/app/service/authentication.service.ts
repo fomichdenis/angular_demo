@@ -16,8 +16,8 @@ export class AuthenticationService {
   }
 
 
-
-  authenticate(credentials, callback): boolean {
+  //fix
+  authenticate(credentials, callback) {
     console.log(credentials);
     this.http.get(`http://localhost:8080/test_angular`,
       { headers: { authorization: this.createBasicAuthToken(credentials.username, credentials.password) } }).
@@ -30,10 +30,10 @@ export class AuthenticationService {
           console.log('manager');
           this.registerManager();
         }
+        return callback && callback();
       }
       console.log(this.isUserLoggedIn());
     });
-    return this.isUserLoggedIn();
   }
 
   createBasicAuthToken(username: String, password: String) {

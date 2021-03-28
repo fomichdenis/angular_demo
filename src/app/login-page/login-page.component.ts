@@ -20,18 +20,13 @@ export class LoginPageComponent implements OnInit {
   error = false;
   ngOnInit(): void {
   }
-
+  //fix
   loginUser() {
     console.log('login = ' + this.credentials.username + ", password = " + this.credentials.password);
-    if (this.authenticationService.authenticate(this.credentials, () => {
+    this.authenticationService.authenticate(this.credentials, () => {
       this.router.navigate(['/templater']);
-    }) == true) {
-      this.router.navigate(['/templater']);
-    }
-    else {
-      this.error = true;
-    }
-    return false;
+    });
+    setTimeout( () => { this.error = true}, 500);
   }
 
 }
