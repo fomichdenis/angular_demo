@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ManagerControlService} from "../service/manager-control.service";
 import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../service/authentication.service";
+import {Router} from "@angular/router";
+import {DataService} from "../service/data.service";
 // @ts-ignore
 @Component({
   selector: 'app-account-settings',
@@ -17,9 +20,13 @@ export class AccountSettingsComponent implements OnInit{
     user_add: 'DEV'
   };
   role = '';
+  isLoggedIn = false;
   constructor(
     private managerControlService: ManagerControlService,
-    private http: HttpClient
+    private http: HttpClient,
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private dataService: DataService
   ) {}
 
 
@@ -35,9 +42,17 @@ export class AccountSettingsComponent implements OnInit{
       this.info.user_del = response['Department name'];
       this.info.user_add = response['Department name'];
     });
+    this.dataService.isLoggedInSubject.subscribe(i => {
+      this.isLoggedIn = i;
+    });
   }
 
-  Logout() {}
+  Logout() {
+    this.authenticationService.logout();
+    this.isLoggedIn = false;
+    this.dataService.isLoggedInSubject.next(this.isLoggedIn);
+    this.router.navigate(['/login']);
+  }
   AddUser(val) {
     this.managerControlService.addUserToGroup(val).subscribe(response => {
         if (response) {

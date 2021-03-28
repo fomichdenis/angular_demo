@@ -17,14 +17,20 @@ export class LoginPageComponent implements OnInit {
     private router: Router
   ) { }
   credentials = {username: '', password: ''};
+  error = false;
   ngOnInit(): void {
   }
 
   loginUser() {
     console.log('login = ' + this.credentials.username + ", password = " + this.credentials.password);
-    this.authenticationService.authenticate(this.credentials, () => {
+    if (this.authenticationService.authenticate(this.credentials, () => {
       this.router.navigate(['/templater']);
-    });
+    }) == true) {
+      this.router.navigate(['/templater']);
+    }
+    else {
+      this.error = true;
+    }
     return false;
   }
 

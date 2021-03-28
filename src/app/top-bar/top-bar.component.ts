@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AuthenticationService} from "../service/authentication.service";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
+import {DataService} from "../service/data.service";
 
 @Component({
   selector: 'app-top-bar',
@@ -10,13 +11,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private route: ActivatedRoute, private router: Router, private dataService: DataService) {
 
   }
 
   isLoggedIn = false;
 
   ngOnInit(): void {
+    this.dataService.isLoggedInSubject.subscribe(i => {
+      this.isLoggedIn = i;
+    });
     this.isLoggedIn = this.authenticationService.isUserLoggedIn();
     console.log('menu ->' + this.isLoggedIn);
   }

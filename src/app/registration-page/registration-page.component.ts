@@ -28,5 +28,7 @@ export class RegistrationPageComponent implements OnInit {
     });
     return false;
   }
-
+  Login(){
+    this.router.navigate(['/login']);
+  }
 }
