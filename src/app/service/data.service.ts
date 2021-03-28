@@ -10,15 +10,18 @@ export class DataService {
   public unmatchedHeadings: Paragraph[] = [];
   public style: boolean = false;
   public files: File[] = [];
+  public isLoggedIn: boolean = false;
   uHeadingsSubject: BehaviorSubject<Paragraph[]>;
   pHeadingsSubject: BehaviorSubject<Paragraph[][]>;
   styleSubject: BehaviorSubject<boolean>;
   fileSubject: BehaviorSubject<File[]>;
+  isLoggedInSubject: BehaviorSubject<boolean>;
   constructor() {
     this.uHeadingsSubject = new BehaviorSubject(this.unmatchedHeadings);
     this.pHeadingsSubject = new BehaviorSubject(this.proposedHeadings);
     this.styleSubject = new BehaviorSubject(this.style);
     this.fileSubject = new BehaviorSubject(this.files);
+    this.isLoggedInSubject = new BehaviorSubject(this.isLoggedIn);
   }
   nextUHeadings(uHeadings: Paragraph[]){
     this.uHeadingsSubject.next(uHeadings);
@@ -31,5 +34,8 @@ export class DataService {
   }
   nextFile(files: File[]){
     this.fileSubject.next(files);
+  }
+  neIsLoggedIn(log: boolean){
+    this.isLoggedInSubject.next(log);
   }
 }

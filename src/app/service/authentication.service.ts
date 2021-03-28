@@ -17,22 +17,23 @@ export class AuthenticationService {
 
 
 
-  authenticate(credentials, callback) {
+  authenticate(credentials, callback): boolean {
     console.log(credentials);
     this.http.get(`http://localhost:8080/test_angular`,
-      { headers: { authorization: this.createBasicAuthToken(credentials.username, credentials.password) } }).subscribe( response => {
+      { headers: { authorization: this.createBasicAuthToken(credentials.username, credentials.password) } }).
+    subscribe( response => {
       if (response && response['username']) {
         console.log(response);
         this.credentials = credentials;
         this.registerSuccessfulLogin(credentials.username, credentials.password);
-        if (response['manager']){
+        if (response['manager']) {
           console.log('manager');
           this.registerManager();
         }
       }
       console.log(this.isUserLoggedIn());
-      return callback && callback();
     });
+    return this.isUserLoggedIn();
   }
 
   createBasicAuthToken(username: String, password: String) {
