@@ -16,7 +16,7 @@ export class AuthenticationService {
   }
 
 
-
+  //fix
   authenticate(credentials, callback) {
     console.log(credentials);
     this.http.get(`http://localhost:8080/test_angular`,

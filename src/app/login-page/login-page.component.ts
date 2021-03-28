@@ -20,7 +20,7 @@ export class LoginPageComponent implements OnInit {
   error = false;
   ngOnInit(): void {
   }
-
+  //fix
   loginUser() {
     console.log('login = ' + this.credentials.username + ", password = " + this.credentials.password);
     this.authenticationService.authenticate(this.credentials, () => {
