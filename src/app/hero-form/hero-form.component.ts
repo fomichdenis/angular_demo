@@ -70,8 +70,8 @@ export class HeroFormComponent implements OnInit, OnDestroy{
 
   template = {
     name: '',
-    title_type: '1',//нет в коде
-    title_page: '1',//нет в коде
+    title_type: '0',//нет в коде
+    title_page: '0',//нет в коде
     header: '1',//нет в коде
     footer: '1', //нет в коде
     numeration: '1', //нет в коде

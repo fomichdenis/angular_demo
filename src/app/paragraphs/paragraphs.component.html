@@ -8,7 +8,7 @@
       class="example-list"
       (cdkDropListDropped)="dropParagraph($event)">
       <div class="example-box" *ngFor="let item of unmatchedHeadings" cdkDrag (click)="onSelect(item)">
-        {{item.headingName}}
+        {{item.headingName}} ({{item.fileName}})
       </div>
     </div>
   </div>
@@ -17,9 +17,9 @@
     <div class="example-container">
       <div *ngIf="paragraph[0]">
         <h4>Final name: {{paragraph[0].finalName}}</h4>
-        <tr *ngFor="let item of paragraph">
-          <td>{{ item.fileName }}</td>
-        </tr>
+<!--        <tr *ngFor="let item of paragraph">-->
+<!--          <td>{{ item.fileName }}</td>-->
+<!--        </tr>-->
       </div>
       <div
         cdkDropList
@@ -27,7 +27,7 @@
         [cdkDropListData]="paragraph"
         class="example-list"
         (cdkDropListDropped)="dropParagraph($event)">
-        <div class="example-box" *ngFor="let item of paragraph" cdkDrag cdkDrag (click)="onSelect(item)">{{item.headingName}}</div>
+        <div class="example-box" *ngFor="let item of paragraph" cdkDrag cdkDrag (click)="onSelect(item)">{{item.headingName}} ({{item.fileName}})</div>
       </div>
     </div>
   </ng-container>
