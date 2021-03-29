@@ -15,7 +15,7 @@ export class AccountSettingsComponent implements OnInit{
   Group = [''];
   info = {
     acc_name: 'Max',
-    group_name: 'DEV',
+    group_name: 'No department',
     user_del: 'DEV',
     user_add: 'DEV'
   };

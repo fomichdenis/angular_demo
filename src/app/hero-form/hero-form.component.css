@@ -5,3 +5,8 @@ button
   font:inherit;
   color:white;
 }
+body
+{
+  margin-left:10px;
+  margin-right: 10px;
+}
