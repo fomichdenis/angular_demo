@@ -64,7 +64,9 @@ export class DropZoneComponent implements OnInit, OnDestroy {
     this.files.push(...event.addedFiles);
 
     const formData = new FormData();
-
+    this.fileReadyToDownload = false;
+    this.proposedHeadings = [];
+    this.unmatchedHeadings = [];
     // for (let i = 0; i < this.files.length; i++){
     //   this.uploadService.upload(this.files[i], 'http://localhost:8080/upload_angular')
     //     .subscribe(res => {
@@ -78,6 +80,8 @@ export class DropZoneComponent implements OnInit, OnDestroy {
     //console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
     this.fileReadyToDownload = false;
+    this.proposedHeadings = [];
+    this.unmatchedHeadings = [];
   }
 
   deleteStyle() {

@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
     this.authenticationService.authenticate(this.credentials, () => {
       this.router.navigate(['/templater']);
     });
-    setTimeout( () => { this.error = true}, 500);
+    setTimeout( () => { this.error = true}, 1000);
   }
 
 }
