@@ -19,5 +19,8 @@
 
 /* When moving the mouse over the close button */
 .closebtn:hover {
-  color: black;
+  color: white;
+}
+.button {
+  color: white;
 }
